@@ -243,49 +243,41 @@ a.textContent=vis?'▶':'▼';a.style.color=vis?'var(--dim)':'var(--brand)';}
 function renderPend(){
 const el=document.getElementById('pendView');
 const items=[
-{n:1,t:'Fechar com Jefferson — infra CC por R$ 22k + pedir câmera grátis Jamil (4 pontos)',proj:'Central Del.',st:'r',obs:'Raphael autorizou fechar'},
-{n:2,t:'Negociar Rosângela (Mafra) — forro/drywall, desconto + parcelamento longo',proj:'Central Del.',st:'r',obs:'Entrada ~R$ 15-20k máx.'},
-{n:3,t:'Projeto 3D com Bruno — cor parede, referência Grupo Ragga',proj:'Central Del.',st:'r',obs:'Bruno precisa definir cor'},
-{n:4,t:'Cor do forro com Bruno — preto ou branco, verificar preço',proj:'Central Del.',st:'r',obs:'Raphael prefere preto'},
-{n:5,t:'Projeto central atualizado com mesas — trazer quarta que vem',proj:'Central Del.',st:'r',obs:'Mesa reunião + supervisora manhã'},
-{n:6,t:'Soltar pagamentos e entradas — começar a fechar fornecedores',proj:'Central Del.',st:'r',obs:'Sexta já soltar primeiros'},
-{n:7,t:'Cortina (~R$ 300) + Porta (~R$ 650) — providenciar instalação',proj:'Central Del.',st:'r',obs:'À vista'},
-{n:8,t:'Orçamento Ibiporã — terminar projeto',proj:'Ibiporã',st:'r',obs:'Raphael cobrou'},
-{n:9,t:'Fechamento buraco da laje — orçar grade metálica + gesso',proj:'Central Del.',st:'y',obs:'~R$ 1.000 estimado'},
-{n:10,t:'Facial porta — incluir no pedido Jefferson',proj:'Central Del.',st:'y',obs:'~R$ 1.500'},
-{n:11,t:'Depara Jefferson vs mercado — comparativo de preços',proj:'Central Del.',st:'y',obs:'Criar hábito de cotação'},
-{n:12,t:'Mesas — verificar tamanhos depósito + escritório, padronizar',proj:'Central Del.',st:'y',obs:'1,40x0,60 preferência'},
-{n:13,t:'Iluminação — projeto com Bruno + orçar placas e MO',proj:'Central Del.',st:'y',obs:'~R$ 10k estimado'},
-{n:14,t:'TV 75" — comprar antes de inaugurar',proj:'Central Del.',st:'y',obs:'~R$ 5k, não urgente'},
-{n:15,t:'Uniformes Ruvest — orçamento definitivo',proj:'Central Del.',st:'y',obs:'~R$ 4k, ent.+3x'},
-{n:16,t:'Piso vinílico — SUSPENSO, testar sem piso primeiro',proj:'Central Del.',st:'y',obs:'Rever em outubro se eco atrapalhar'},
-{n:17,t:'Orçamento Galileu 04 Vasco da Gama',proj:'Galileu VG',st:'y',obs:'Começou a fazer'},
-{n:18,t:'Reunião Ivaiporã c/ Bruno — sexta 14h',proj:'Ivaiporã',st:'y',obs:'Bruno agendou c/ Palma e Marcelo'},
+{n:1,t:'Fechar com Jefferson — infra CC R$ 22k + câmera grátis Jamil (4 pontos). Raphael autorizou.',proj:'Central Del.'},
+{n:2,t:'Negociar Rosângela (Mafra) — forro/drywall, desconto + parcelamento longo. Entrada máx. R$ 15-20k.',proj:'Central Del.'},
+{n:3,t:'Projeto 3D com Bruno — cor parede (ref. Grupo Ragga)',proj:'Central Del.'},
+{n:4,t:'Cor do forro com Bruno — preto ou branco (Raphael prefere preto), verificar diferença de preço',proj:'Central Del.'},
+{n:5,t:'Projeto central atualizado com mesas — trazer quarta que vem. Ajustar posição mesa reunião + mesa supervisora manhã',proj:'Central Del.'},
+{n:6,t:'Soltar pagamentos — começar a fechar fornecedores, sexta já soltar primeiros',proj:'Central Del.'},
+{n:7,t:'Cortina (~R$ 300) + Porta (~R$ 650) — providenciar instalação',proj:'Central Del.'},
+{n:8,t:'Fechamento buraco laje (~R$ 1k) — orçar grade metálica + gesso',proj:'Central Del.'},
+{n:9,t:'Facial porta — incluir no pedido Jefferson (~R$ 1.500)',proj:'Central Del.'},
+{n:10,t:'Depara Jefferson vs mercado — comparativo de preços (criar hábito)',proj:'Central Del.'},
+{n:11,t:'Mesas — verificar tamanhos depósito + escritório, padronizar 1,40x0,60',proj:'Central Del.'},
+{n:12,t:'Iluminação — projeto com Bruno + orçar placas e MO (~R$ 10k estimado)',proj:'Central Del.'},
+{n:13,t:'TV 75" — comprar antes de inaugurar (~R$ 5k)',proj:'Central Del.'},
+{n:14,t:'Uniformes Ruvest — orçamento definitivo (~R$ 4k)',proj:'Central Del.'},
+{n:15,t:'Piso vinílico — SUSPENSO, testar sem piso primeiro. Rever em outubro.',proj:'Central Del.'},
+{n:16,t:'Orçamento Ibiporã — terminar projeto (Raphael cobrou)',proj:'Ibiporã'},
+{n:17,t:'Orçamento Galileu 04 Vasco da Gama',proj:'Galileu VG'},
+{n:18,t:'Reunião Ivaiporã com Bruno — sexta 14h',proj:'Ivaiporã'},
 ];
-const stl={r:['sem sem-r','🔴 Urgente'],y:['sem sem-y','🟡 Em andamento']};
-const ur=items.filter(x=>x.st==='r').length,ea=items.filter(x=>x.st==='y').length;
 
 let h=`<div class="pend-actions">
 <button class="pend-btn" onclick="downloadPendImg()">📸 Baixar Imagem</button>
 <button class="pend-btn sec" onclick="copyWhatsApp()">📋 Copiar WhatsApp</button>
 </div>`;
 
-h+=`<div id="pendCapture">`;
-h+=`<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
-<div class="pend-card" style="flex:1;min-width:120px;text-align:center"><div style="font-size:32px;font-weight:800;color:#DC2626">${ur}</div><div style="font-size:10px;color:var(--muted);margin-top:4px">URGENTES</div></div>
-<div class="pend-card" style="flex:1;min-width:120px;text-align:center"><div style="font-size:32px;font-weight:800;color:#D97706">${ea}</div><div style="font-size:10px;color:var(--muted);margin-top:4px">EM ANDAMENTO</div></div>
-<div class="pend-card" style="flex:1;min-width:120px;text-align:center"><div style="font-size:32px;font-weight:800;color:#3B2758">${ur+ea}</div><div style="font-size:10px;color:var(--muted);margin-top:4px">TOTAL</div></div>
-</div>`;
-
+h+=`<div id="pendCapture" style="background:#F5F3F7;padding:4px">`;
 h+=`<div class="pend-card"><div class="ct">📋 Pendências Ivan — PDCA Expansão 05/08/2026</div>
-<div class="pend-subtitle">Extraído da reunião c/ Raphael · Apenas itens do Ivan</div>
-<div class="pend-legend" style="margin:12px 0"><span class="sem sem-r">🔴 Urgente</span><span class="sem sem-y">🟡 Em andamento</span></div>
-<table class="pend-t"><thead><tr><th style="width:36px">#</th><th>Pendência</th><th style="width:90px">Projeto</th><th style="width:110px">Status</th><th>Obs</th></tr></thead><tbody>`;
+<div class="pend-subtitle" style="margin-bottom:16px">Extraído da reunião com Raphael · ${items.length} itens pendentes</div>
+<table class="pend-t"><thead><tr><th style="width:36px">#</th><th>Pendência</th><th style="width:100px">Projeto</th></tr></thead><tbody>`;
 
-['r','y'].forEach(status=>{
-items.filter(i=>i.st===status).forEach(i=>{
-h+=`<tr><td class="pend-num">${i.n}</td><td style="font-weight:500">${i.t}</td><td class="pend-proj">${i.proj}</td><td><span class="${stl[i.st][0]}">${stl[i.st][1]}</span></td><td style="font-size:11px;color:var(--muted)">${i.obs}</td></tr>`;
-});});
+const projColors={'Central Del.':['#059669','#D1FAE5'],'Ibiporã':['#DC2626','#FEE2E2'],'Galileu VG':['#3B6FD6','#DBEAFE'],'Ivaiporã':['#D97706','#FEF3C7']};
+items.forEach(i=>{
+const pc=projColors[i.proj]||['#3B2758','#F0ECF3'];
+h+=`<tr><td class="pend-num">${i.n}</td><td style="font-weight:500;line-height:1.6">${i.t}</td><td class="pend-proj" style="font-size:11px"><span style="background:${pc[1]};padding:4px 10px;border-radius:8px;font-weight:600;color:${pc[0]};font-size:10px">${i.proj}</span></td></tr>`;
+});
 h+=`</tbody></table></div></div>`;
 el.innerHTML=h;}
 
@@ -305,31 +297,29 @@ setTimeout(()=>toast.style.display='none',2000);
 
 function copyWhatsApp(){
 const txt=`*📋 PENDÊNCIAS IVAN — PDCA EXPANSÃO 05/08*
-*8 urgentes · 10 em andamento*
+*18 itens pendentes*
 
-*🔴 URGENTES:*
+*Central de Delivery:*
+1️⃣ Fechar com Jefferson — infra CC R$ 22k + câmera grátis Jamil. Raphael autorizou.
+2️⃣ Negociar Rosângela (Mafra) — forro/drywall, desconto + parcelamento longo
+3️⃣ Projeto 3D com Bruno — cor parede (ref. Grupo Ragga)
+4️⃣ Cor do forro com Bruno — preto ou branco (Raphael prefere preto)
+5️⃣ Projeto central atualizado c/ mesas — trazer quarta que vem
+6️⃣ Soltar pagamentos — começar a fechar fornecedores, sexta já soltar
+7️⃣ Cortina (~R$ 300) + Porta (~R$ 650) — instalação
+8️⃣ Fechamento buraco laje (~R$ 1k)
+9️⃣ Facial porta — incluir pedido Jefferson (~R$ 1.500)
+🔟 Depara Jefferson vs mercado — comparativo preços
+1️⃣1️⃣ Mesas — verificar tamanhos depósito/escritório
+1️⃣2️⃣ Iluminação — projeto c/ Bruno (~R$ 10k estimado)
+1️⃣3️⃣ TV 75" (~R$ 5k, comprar antes de inaugurar)
+1️⃣4️⃣ Uniformes Ruvest — orçamento definitivo (~R$ 4k)
+1️⃣5️⃣ Piso vinílico — SUSPENSO, rever outubro
 
-1️⃣ *Fechar com Jefferson* — infra CC R$ 22k + câmera grátis Jamil. Raphael autorizou.
-2️⃣ *Negociar Rosângela (Mafra)* — forro/drywall, desconto + parcelamento longo
-3️⃣ *Projeto 3D com Bruno* — cor parede (ref. Grupo Ragga)
-4️⃣ *Cor do forro com Bruno* — preto ou branco (Raphael prefere preto)
-5️⃣ *Projeto central atualizado c/ mesas* — trazer quarta que vem
-6️⃣ *Soltar pagamentos* — começar a fechar fornecedores, sexta já soltar primeiros
-7️⃣ *Cortina + Porta* — instalação (~R$ 300 + R$ 650)
-8️⃣ *Orçamento Ibiporã* — terminar projeto
-
-*🟡 EM ANDAMENTO:*
-
-9️⃣ Fechamento buraco laje (~R$ 1k)
-🔟 Facial porta — incluir pedido Jefferson (~R$ 1.500)
-1️⃣1️⃣ Depara Jefferson vs mercado
-1️⃣2️⃣ Mesas — verificar tamanhos depósito/escritório
-1️⃣3️⃣ Iluminação — projeto c/ Bruno (~R$ 10k)
-1️⃣4️⃣ TV 75" (~R$ 5k, comprar antes de inaugurar)
-1️⃣5️⃣ Uniformes Ruvest — orçamento definitivo (~R$ 4k)
-1️⃣6️⃣ Piso vinílico — SUSPENSO, rever outubro
+*Outros projetos:*
+1️⃣6️⃣ Orçamento Ibiporã — terminar (Raphael cobrou)
 1️⃣7️⃣ Orçamento Galileu 04 Vasco da Gama
-1️⃣8️⃣ Reunião Ivaiporã c/ Bruno — sexta 14h`;
+1️⃣8️⃣ Reunião Ivaiporã c/ Bruno — sexta 14h`
 navigator.clipboard.writeText(txt).then(()=>{
 const toast=document.getElementById('toast');
 toast.textContent='✅ Texto copiado! Cole no WhatsApp.';
