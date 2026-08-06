@@ -71,18 +71,19 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ft{text-align:center;padding:20px 32px;font-size:8px;color:var(--dim);letter-spacing:1px}
 @media(max-width:768px){.hd,.tabs,.fl,.wrap,.ft{padding-left:12px!important;padding-right:12px!important}.hv{font-size:28px!important}.tg{grid-template-columns:1fr 1fr}.og{grid-template-columns:1fr}.cw{height:180px}.bh{flex-direction:column;align-items:flex-start}.bh-n{font-size:16px}.bh-t{text-align:left;font-size:18px}.bs-g{grid-template-columns:1fr 1fr}.cf-cw{height:200px}}
 
-.pend-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
-.pend-t{width:100%;border-collapse:separate;border-spacing:0 4px}
-.pend-t th{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:700;padding:8px 12px;text-align:left;border-bottom:2px solid var(--border)}
-.pend-t td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle}
+.pend-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.pend-t{width:100%;border-collapse:separate;border-spacing:0 6px}
+.pend-t th{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:700;padding:10px 8px;text-align:left;border-bottom:2px solid var(--border)}
+.pend-t td{padding:14px 10px;font-size:15px;border-bottom:1px solid var(--border);vertical-align:middle}
 .pend-t tr:hover td{background:var(--surface)}
-.pend-num{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--brand);font-size:14px;width:40px;text-align:center}
-.pend-proj{font-size:11px;color:var(--muted);font-weight:500}
+.pend-num{font-family:'Space Grotesk',sans-serif;font-weight:800;color:var(--white);font-size:15px;width:44px;text-align:center}
+.pend-num span{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:var(--brand)}
+.pend-proj{font-size:12px;color:var(--muted);font-weight:500;white-space:nowrap}
 .sem{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px}
 .sem-r{background:#FEE2E2;color:#DC2626}.sem-y{background:#FEF3C7;color:#D97706}.sem-g{background:#D1FAE5;color:#059669}
 .pend-legend{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .pend-legend .sem{font-size:10px}
-.pend-subtitle{font-size:11px;color:var(--dim);margin-top:4px}
+.pend-subtitle{font-size:13px;color:var(--dim);margin-top:6px}
 
 .pend-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .pend-btn{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:all .2s}
@@ -269,14 +270,14 @@ let h=`<div class="pend-actions">
 </div>`;
 
 h+=`<div id="pendCapture" style="background:#F5F3F7;padding:4px">`;
-h+=`<div class="pend-card"><div class="ct">📋 Pendências Ivan — PDCA Expansão 05/08/2026</div>
+h+=`<div class="pend-card"><div class="ct" style="font-size:18px;margin-bottom:6px">📋 Pendências Ivan — PDCA Expansão 05/08/2026</div>
 <div class="pend-subtitle" style="margin-bottom:16px">Extraído da reunião com Raphael · ${items.length} itens pendentes</div>
-<table class="pend-t"><thead><tr><th style="width:36px">#</th><th>Pendência</th><th style="width:100px">Projeto</th></tr></thead><tbody>`;
+<table class="pend-t"><thead><tr><th style="width:50px">#</th><th>Pendência</th><th style="width:130px;text-align:center">Projeto</th></tr></thead><tbody>`;
 
 const projColors={'Central Del.':['#059669','#D1FAE5'],'Ibiporã':['#DC2626','#FEE2E2'],'Galileu VG':['#3B6FD6','#DBEAFE'],'Ivaiporã':['#D97706','#FEF3C7']};
 items.forEach(i=>{
 const pc=projColors[i.proj]||['#3B2758','#F0ECF3'];
-h+=`<tr><td class="pend-num">${i.n}</td><td style="font-weight:500;line-height:1.6">${i.t}</td><td class="pend-proj" style="font-size:11px"><span style="background:${pc[1]};padding:4px 10px;border-radius:8px;font-weight:600;color:${pc[0]};font-size:10px">${i.proj}</span></td></tr>`;
+h+=`<tr><td class="pend-num"><span>${i.n}</span></td><td style="font-weight:500;line-height:1.7;font-size:15px">${i.t}</td><td class="pend-proj"><span style="background:${pc[1]};padding:6px 14px;border-radius:10px;font-weight:700;color:${pc[0]};font-size:12px;white-space:nowrap;display:inline-block">${i.proj}</span></td></tr>`;
 });
 h+=`</tbody></table></div></div>`;
 el.innerHTML=h;}
