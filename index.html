@@ -480,8 +480,8 @@ if(cgMeses<=NM)cg[cgMeses-1]+=diff;
 }
 const totalCg=cg.reduce((a,b)=>a+b,0);
 
-const combined=capex.map((v,i)=>v+cg[i]);
-const totalCombined=totalCapex+totalCg;
+const saldo=capex.map((v,i)=>cg[i]-v);const combined=saldo;
+const totalSaldo=totalCg-totalCapex;const totalCombined=totalSaldo;
 
 // Active count
 const activeCount=Object.values(simActiveProjects).filter(v=>v).length;
@@ -490,7 +490,7 @@ const activeCount=Object.values(simActiveProjects).filter(v=>v).length;
 document.getElementById('simSummary').innerHTML=`
 <div class="sim-box"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCapex)}</div><div class="sim-box-l">CAPEX (${activeCount} projetos)</div></div>
 <div class="sim-box"><div class="sim-box-v" style="color:#059669">R$ ${fmtBR(totalCg)}</div><div class="sim-box-l">Capital de Giro</div></div>
-<div class="sim-box" style="background:var(--brand-soft)"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCombined)}</div><div class="sim-box-l">Necessidade Total</div></div>`;
+<div class="sim-box" style="background:var(--brand-soft)"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCombined)}</div><div class="sim-box-l">Saldo (CG − CAPEX)</div></div>`;
 
 // Table
 let t=`<thead><tr><th>Linha</th>`;
@@ -523,28 +523,28 @@ combined.forEach(v=>t+=`<td>R$ ${fmtBR(v)}</td>`);
 t+=`<td>R$ ${fmtBR(totalCombined)}</td></tr>`;
 
 // % CG
-t+=`<tr class="pct-row"><td>% CG / Total</td>`;
-combined.forEach((v,i)=>t+=`<td>${v>0?((cg[i]/v)*100).toFixed(0)+'%':'—'}</td>`);
-t+=`<td>${totalCombined>0?((totalCg/totalCombined)*100).toFixed(0)+'%':'—'}</td></tr>`;
+t+=`<tr class="pct-row"><td>Cobertura CG / CAPEX</td>`;
+capex.forEach((v,i)=>t+=`<td style="color:${cg[i]>=v?'#059669':'#DC2626'}">${v>0?((cg[i]/v)*100).toFixed(0)+'%':'—'}</td>`);
+t+=`<td style="color:${totalCg>=totalCapex?'#059669':'#DC2626'}">${totalCapex>0?((totalCg/totalCapex)*100).toFixed(0)+'%':'—'}</td></tr>`;
 
 // Acumulado
 let cumTot=0;
-t+=`<tr class="pct-row"><td>Acumulado</td>`;
-combined.forEach(v=>{cumTot+=v;t+=`<td>R$ ${fmtBR(cumTot)}</td>`;});
+t+=`<tr class="pct-row"><td>Saldo Acumulado</td>`;
+saldo.forEach(v=>{cumTot+=v;t+=`<td style="color:${cumTot>=0?'#059669':'#DC2626'}">${cumTot>=0?'':'− '}R$ ${fmtBR(Math.abs(cumTot))}</td>`;});
 t+=`<td></td></tr></tbody>`;
 
 document.getElementById('simTable').innerHTML=t;
 
 // Chart
 if(simChartInst)simChartInst.destroy();
-const cumArr=[];let sc=0;combined.forEach(v=>{sc+=v;cumArr.push(sc);});
+const cumArr=[];let sc=0;saldo.forEach(v=>{sc+=v;cumArr.push(sc);});
 
 const ctx=document.getElementById('simChart').getContext('2d');
 simChartInst=new Chart(ctx,{type:'bar',data:{labels:months,datasets:[
-{label:'CAPEX',data:[...capex],backgroundColor:'#3B275899',borderRadius:3,barPercentage:.7},
-{label:'Capital de Giro',data:[...cg],backgroundColor:'#05966999',borderRadius:3,barPercentage:.7},
-{label:'Acumulado',data:cumArr,type:'line',borderColor:'#1E1230',backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1E1230',yAxisID:'y1',tension:.3},
-]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{color:'#6B5F7A',font:{size:9},padding:8,usePointStyle:true}},tooltip:{backgroundColor:'#fff',titleColor:'#1E1230',bodyColor:'#6B5F7A',borderColor:'#E0D8E8',borderWidth:1,bodyFont:{size:10},callbacks:{label:c=>c.dataset.label+': R$ '+fmtBR(c.raw)}}},scales:{x:{stacked:true,grid:{display:false},ticks:{color:'#6B5F7A',font:{size:9}}},y:{stacked:true,grid:{color:'#E0D8E8'},ticks:{color:'#6B5F7A',font:{size:8},callback:v=>'R$ '+fmtBR(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#1E1230',font:{size:8},callback:v=>'R$ '+fmtBR(v)}}}}});
+{label:'CAPEX (necessidade)',data:[...capex],backgroundColor:'#3B275899',borderRadius:3,barPercentage:.35,categoryPercentage:.8},
+{label:'Capital de Giro (disponível)',data:[...cg],backgroundColor:'#05966966',borderRadius:3,barPercentage:.35,categoryPercentage:.8},
+{label:'Saldo Acumulado',data:cumArr,type:'line',borderColor:'#1E1230',backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1E1230',yAxisID:'y1',tension:.3},
+]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{color:'#6B5F7A',font:{size:9},padding:8,usePointStyle:true}},tooltip:{backgroundColor:'#fff',titleColor:'#1E1230',bodyColor:'#6B5F7A',borderColor:'#E0D8E8',borderWidth:1,bodyFont:{size:10},callbacks:{label:c=>c.dataset.label+': R$ '+fmtBR(c.raw)}}},scales:{x:{stacked:false,grid:{display:false},ticks:{color:'#6B5F7A',font:{size:9}}},y:{stacked:false,grid:{color:'#E0D8E8'},ticks:{color:'#6B5F7A',font:{size:8},callback:v=>'R$ '+fmtBR(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#1E1230',font:{size:8},callback:v=>'R$ '+fmtBR(v)}}}}});
 }
 
 function simCapexEdit(){
@@ -579,15 +579,15 @@ if(capexCells[capex.length+1])capexCells[capex.length+1].textContent='R$ '+fmtBR
 const cgInputs=document.querySelectorAll('.sim-cg-input');
 const cg=[];cgInputs.forEach(inp=>cg.push(parseBR(inp.value)));
 const totalCg=cg.reduce((a,b)=>a+b,0);
-const combined=capex.map((v,i)=>v+(cg[i]||0));
-const totalCombined=totalCapex+totalCg;
+const saldo=capex.map((v,i)=>(cg[i]||0)-v);const combined=saldo;
+const totalSaldo=totalCg-totalCapex;const totalCombined=totalSaldo;
 const activeCount=Object.values(simActiveProjects).filter(v=>v).length;
 
 // Update summary
 document.getElementById('simSummary').innerHTML=`
 <div class="sim-box"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCapex)}</div><div class="sim-box-l">CAPEX (${activeCount} projetos)</div></div>
 <div class="sim-box"><div class="sim-box-v" style="color:#059669">R$ ${fmtBR(totalCg)}</div><div class="sim-box-l">Capital de Giro</div></div>
-<div class="sim-box" style="background:var(--brand-soft)"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCombined)}</div><div class="sim-box-l">Necessidade Total</div></div>`;
+<div class="sim-box" style="background:var(--brand-soft)"><div class="sim-box-v" style="color:var(--brand)">R$ ${fmtBR(totalCombined)}</div><div class="sim-box-l">Saldo (CG − CAPEX)</div></div>`;
 
 // Update total row
 const totalCells=document.querySelectorAll('tr.total-row td');
@@ -596,13 +596,13 @@ if(totalCells[combined.length+1])totalCells[combined.length+1].textContent='R$ '
 
 // Update chart
 if(simChartInst)simChartInst.destroy();
-const cumArr=[];let sc=0;combined.forEach(v=>{sc+=v;cumArr.push(sc);});
+const cumArr=[];let sc=0;saldo.forEach(v=>{sc+=v;cumArr.push(sc);});
 const ctx=document.getElementById('simChart').getContext('2d');
 simChartInst=new Chart(ctx,{type:'bar',data:{labels:months,datasets:[
-{label:'CAPEX',data:[...capex],backgroundColor:'#3B275899',borderRadius:3,barPercentage:.7},
-{label:'Capital de Giro',data:[...cg],backgroundColor:'#05966999',borderRadius:3,barPercentage:.7},
-{label:'Acumulado',data:cumArr,type:'line',borderColor:'#1E1230',backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1E1230',yAxisID:'y1',tension:.3},
-]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{color:'#6B5F7A',font:{size:9},padding:8,usePointStyle:true}},tooltip:{backgroundColor:'#fff',titleColor:'#1E1230',bodyColor:'#6B5F7A',borderColor:'#E0D8E8',borderWidth:1,bodyFont:{size:10},callbacks:{label:c=>c.dataset.label+': R$ '+fmtBR(c.raw)}}},scales:{x:{stacked:true,grid:{display:false},ticks:{color:'#6B5F7A',font:{size:9}}},y:{stacked:true,grid:{color:'#E0D8E8'},ticks:{color:'#6B5F7A',font:{size:8},callback:v=>'R$ '+fmtBR(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#1E1230',font:{size:8},callback:v=>'R$ '+fmtBR(v)}}}}});
+{label:'CAPEX (necessidade)',data:[...capex],backgroundColor:'#3B275899',borderRadius:3,barPercentage:.35,categoryPercentage:.8},
+{label:'Capital de Giro (disponível)',data:[...cg],backgroundColor:'#05966966',borderRadius:3,barPercentage:.35,categoryPercentage:.8},
+{label:'Saldo Acumulado',data:cumArr,type:'line',borderColor:'#1E1230',backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1E1230',yAxisID:'y1',tension:.3},
+]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{color:'#6B5F7A',font:{size:9},padding:8,usePointStyle:true}},tooltip:{backgroundColor:'#fff',titleColor:'#1E1230',bodyColor:'#6B5F7A',borderColor:'#E0D8E8',borderWidth:1,bodyFont:{size:10},callbacks:{label:c=>c.dataset.label+': R$ '+fmtBR(c.raw)}}},scales:{x:{stacked:false,grid:{display:false},ticks:{color:'#6B5F7A',font:{size:9}}},y:{stacked:false,grid:{color:'#E0D8E8'},ticks:{color:'#6B5F7A',font:{size:8},callback:v=>'R$ '+fmtBR(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#1E1230',font:{size:8},callback:v=>'R$ '+fmtBR(v)}}}}});
 }
 
 function simManualCg(){
