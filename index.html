@@ -170,6 +170,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-add-btn:hover{border-color:var(--brand);background:#fff}
 .ck-add-cat{background:none;border:1.5px dashed var(--border);border-radius:10px;padding:8px 16px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;width:100%;transition:all .15s}
 .ck-add-cat:hover{border-color:var(--brand);color:var(--brand)}
+.ck-delcat{background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:3px 10px;font-size:10px;font-weight:700;color:#DC2626;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.ck-delcat:hover{background:#DC2626;color:#fff;border-color:#DC2626}
+
 .ck-tag-cu{font-size:8px;background:#EDE9FE;color:#6D28D9;border-radius:4px;padding:1px 5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;vertical-align:middle}
 .ck-catfilters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;padding:10px;background:var(--surface);border-radius:10px}
 .ck-cfbtn{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:4px 10px;font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;display:flex;align-items:center;gap:5px}
@@ -917,7 +920,7 @@ function ckBuildProjects(){
 const projs=JSON.parse(JSON.stringify(CK_PROJECTS));
 projs.forEach(p=>{
 // categorias custom
-(CK.customCats[p.id]||[]).forEach(cn=>{if(!p.cats.some(c=>c.cat===cn))p.cats.push({cat:cn,items:[]});});
+(CK.customCats[p.id]||[]).forEach(cn=>{if(!p.cats.some(c=>c.cat===cn))p.cats.push({cat:cn,items:[],cu:true});else p.cats.find(c=>c.cat===cn).cu=true;});
 p.cats.forEach(c=>{
 c.items=c.items.filter(it=>!CK.deleted.includes(it.id));
 // itens custom desta categoria
@@ -960,7 +963,8 @@ h+=`<div class="ck-card"><div class="ck-proj"><span class="ck-dot" style="backgr
 if(proj.cats.length>3){
 h+=`<div class="ck-catfilters"><button class="ck-cfbtn${activeCat==='all'?' a':''}" onclick="setCkCatFilter('${proj.id}','all')">Todas as áreas</button>`;
 proj.cats.forEach(c=>{const cd=c.items.filter(x=>x.done).length;
-h+=`<button class="ck-cfbtn${activeCat===c.cat?' a':''}" onclick="setCkCatFilter('${proj.id}',this.dataset.c)" data-c="${c.cat.replace(/"/g,'&quot;')}">${c.cat} <span class="ck-cfn">${cd}/${c.items.length}</span></button>`;});
+const cLbl=c.cat.length>38?c.cat.slice(0,38)+'…':c.cat;
+h+=`<button class="ck-cfbtn${activeCat===c.cat?' a':''}" onclick="setCkCatFilter('${proj.id}',this.dataset.c)" data-c="${c.cat.replace(/"/g,'&quot;')}" title="${c.cat.replace(/"/g,'&quot;')}">${cLbl} <span class="ck-cfn">${cd}/${c.items.length}</span></button>`;});
 h+=`</div>`;}
 
 if(proj.menu){
@@ -976,7 +980,7 @@ h+=`<div style="font-size:10px;color:var(--muted);margin-top:8px">Fonte: fichas_
 
 proj.cats.filter(cat=>activeCat==='all'||cat.cat===activeCat).forEach(cat=>{
 const cDone=cat.items.filter(x=>x.done).length;
-h+=`<div style="margin:14px 0 6px;font-size:13px;font-weight:700;color:var(--brand);display:flex;justify-content:space-between;align-items:center"><span>${cat.cat}</span><span style="display:flex;gap:8px;align-items:center"><span style="font-size:10px;color:var(--muted)">${cDone}/${cat.items.length}</span><button class="ck-add-btn" onclick="addCkItem('${proj.id}',this)" data-cat="${cat.cat.replace(/"/g,'&quot;')}" title="Adicionar item">+ item</button></span></div>`;
+h+=`<div style="margin:14px 0 6px;font-size:13px;font-weight:700;color:var(--brand);display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${cat.cat}</span><span style="display:flex;gap:8px;align-items:center;flex-shrink:0"><span style="font-size:10px;color:var(--muted)">${cDone}/${cat.items.length}</span><button class="ck-add-btn" onclick="addCkItem('${proj.id}',this)" data-cat="${cat.cat.replace(/"/g,'&quot;')}" title="Adicionar item">+ item</button>${cat.cu?`<button class="ck-delcat" onclick="delCkCat('${proj.id}',this.dataset.c)" data-c="${cat.cat.replace(/"/g,'&quot;')}" title="Excluir esta categoria">🗑 excluir</button>`:''}</span></div>`;
 cat.items.forEach(item=>{
 const done=item.done||false;
 h+=`<div class="ck-item"><div class="ck-cb${done?' done':''}" data-id="${item.id}" onclick="toggleCk(this)"></div><div class="ck-text" style="flex:1"><div class="ck-title${done?' done':''}">${item.t}${item.custom?' <span class="ck-tag-cu">novo</span>':''}</div><div class="ck-fields"><div class="ck-field"><label>Prazo</label><input type="date" data-id="${item.id}" data-field="prazo" value="${item.prazo||''}" onchange="markDirty()"></div><div class="ck-field"><label>Responsável</label><input type="text" data-id="${item.id}" data-field="resp" value="${(item.resp||'').replace(/"/g,'&quot;')}" placeholder="Nome..." onchange="markDirty()"></div><div class="ck-field"><label>Obs</label><input type="text" data-id="${item.id}" data-field="obs" value="${(item.obs||'').replace(/"/g,'&quot;')}" placeholder="Observação..." onchange="markDirty()"></div></div></div><button class="ck-del" onclick="delCkItem('${item.id}')" title="Excluir item">×</button></div>`;
@@ -1010,6 +1014,15 @@ if(!n||!n.trim())return;
 ckSyncFromDOM();
 CK.customCats[projId]=CK.customCats[projId]||[];
 if(!CK.customCats[projId].includes(n.trim()))CK.customCats[projId].push(n.trim());
+renderCheck();markDirty();}
+
+function delCkCat(projId,cat){
+if(!confirm('Excluir a categoria "'+cat+'" e todos os itens dela?'))return;
+ckSyncFromDOM();
+CK.customCats[projId]=(CK.customCats[projId]||[]).filter(c=>c!==cat);
+if(CK.custom[projId]&&CK.custom[projId][cat]){
+CK.custom[projId][cat].forEach(ci=>{delete CK.items[ci.id];});
+delete CK.custom[projId][cat];}
 renderCheck();markDirty();}
 
 function delCkItem(id){
