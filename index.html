@@ -137,7 +137,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-cb.done{background:#059669;border-color:#059669;color:#fff}
 .ck-cb.done::after{content:'✓';font-size:12px;font-weight:700}
 .ck-text{flex:1}
-.ck-title{font-size:14px;font-weight:500;line-height:1.5}
+.ck-title{font-size:14px;font-weight:500;line-height:1.6;white-space:pre-wrap;border:1px dashed transparent;border-radius:6px;padding:2px 6px;margin-left:-6px;cursor:text;transition:all .15s;outline:none}
+.ck-title:hover{border-color:var(--border);background:var(--surface)}
+.ck-title:focus{border:1px solid var(--brand);background:var(--white);box-shadow:0 0 0 3px rgba(59,39,88,.08)}
 .ck-title.done{text-decoration:line-through;color:var(--dim)}
 .ck-obs{font-size:10px;color:var(--muted);margin-top:2px}
 .ck-progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-bottom:16px}
@@ -172,6 +174,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-add-cat:hover{border-color:var(--brand);color:var(--brand)}
 .ck-delcat{background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:3px 10px;font-size:10px;font-weight:700;color:#DC2626;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
 .ck-delcat:hover{background:#DC2626;color:#fff;border-color:#DC2626}
+.ck-att{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding-left:30px;align-items:center}
+.ck-chip{display:inline-flex;align-items:center;gap:2px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--white);font-size:10px}
+.ck-chip.lk{border-color:#BFDBFE;background:#EFF6FF}
+.ck-chip.fl{border-color:#DDD6FE;background:#F5F3FF}
+.ck-chip a{color:#1D4ED8;text-decoration:none;font-weight:700;padding:4px 4px 4px 8px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block}
+.ck-chip a:hover{text-decoration:underline}
+.ck-chip-open{background:none;border:none;color:#6D28D9;font-weight:700;font-size:10px;cursor:pointer;padding:4px 4px 4px 8px;font-family:'Inter',sans-serif;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ck-chip-open em{font-style:normal;color:var(--dim);font-weight:500;font-size:9px}
+.ck-chip-open:hover{text-decoration:underline}
+.ck-chip-x{background:none;border:none;color:var(--dim);font-size:13px;font-weight:700;cursor:pointer;padding:2px 7px;line-height:1;font-family:'Inter',sans-serif}
+.ck-chip-x:hover{color:#DC2626}
+.ck-att-btn{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:4px 10px;font-size:9px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.ck-att-btn:hover{border-color:var(--brand);color:var(--brand);background:var(--white)}
+@media(max-width:640px){.ck-att{padding-left:0}}
 
 .ck-tag-cu{font-size:8px;background:#EDE9FE;color:#6D28D9;border-radius:4px;padding:1px 5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;vertical-align:middle}
 .ck-catfilters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;padding:10px;background:var(--surface);border-radius:10px}
@@ -233,6 +249,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 <div id="pendView" class="wrap" style="display:none"></div>
 <div id="cfView" class="wrap" style="display:none"></div>
 <div class="pend-toast" id="toast"></div>
+<input type="file" id="ckFileInput" style="display:none" multiple onchange="ckFileChosen(this)">
 <script type="application/json" id="ckState"></script>
 <div class="ft">GRUPO RAGGA FOODS · INAUGURAÇÕES · 2026</div>
 
@@ -902,6 +919,9 @@ const CK_PROJECTS=[
 {cat:'🏗⚙️👥 Execução',items:[{id:'mt4',t:'Obra'},{id:'mt5',t:'Equipamentos'},{id:'mt6',t:'RH + Operação'}]}]}
 ];
 
+const DEFT={};CK_PROJECTS.forEach(p=>p.cats.forEach(c=>c.items.forEach(it=>DEFT[it.id]=it.t)));
+function escH(t){return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
 // ---- Estado do checklist: embutido no HTML < localStorage ----
 let CK={items:{},custom:{},deleted:[],customCats:{},menuOpen:false};
 (function(){
@@ -926,13 +946,65 @@ c.items=c.items.filter(it=>!CK.deleted.includes(it.id));
 // itens custom desta categoria
 const cu=(CK.custom[p.id]&&CK.custom[p.id][c.cat])||[];
 cu.forEach(ci=>{if(!CK.deleted.includes(ci.id))c.items.push({id:ci.id,t:ci.t,custom:true});});
-c.items.forEach(it=>{const s=CK.items[it.id];if(s){if(s.done!==undefined)it.done=s.done;it.prazo=s.prazo||'';it.resp=s.resp||'';it.obs=s.obs||'';}});
+c.items.forEach(it=>{const s=CK.items[it.id];if(s){if(s.t)it.t=s.t;if(s.done!==undefined)it.done=s.done;it.prazo=s.prazo||'';it.resp=s.resp||'';it.obs=s.obs||'';}});
 });
 // remove categorias custom vazias? não — mantém para poder adicionar itens
 });
 return projs;}
 
+function addCkLink(id){
+let url=prompt('Cole o link (URL):');if(!url||!url.trim())return;url=url.trim();
+if(!/^https?:\/\//i.test(url))url='https://'+url;
+let lbl=prompt('Nome para exibir (opcional):')||'';
+lbl=lbl.trim()||url.replace(/^https?:\/\//i,'').slice(0,42);
+ckSyncFromDOM();
+CK.items[id]=CK.items[id]||{};CK.items[id].links=CK.items[id].links||[];
+CK.items[id].links.push({t:lbl,u:url});
+renderCheck();markDirty();}
+
+function addCkFile(id){window._attId=id;const inp=document.getElementById('ckFileInput');inp.value='';inp.click();}
+
+function ckFileChosen(inp){
+const id=window._attId;if(!id)return;
+const fs=Array.from(inp.files||[]);if(!fs.length)return;
+ckSyncFromDOM();
+let pend=fs.length;
+const fin=()=>{if(--pend===0){renderCheck();markDirty();}};
+fs.forEach(f=>{
+if(f.size>2.5*1024*1024){alert('Arquivo "'+f.name+'" tem '+(f.size/1048576).toFixed(1)+' MB. Limite: 2,5 MB por arquivo (o navegador tem pouco espaço de armazenamento — para arquivos grandes, prefira anexar o link do Drive).');fin();return;}
+const r=new FileReader();
+r.onload=()=>{CK.items[id]=CK.items[id]||{};CK.items[id].files=CK.items[id].files||[];
+CK.items[id].files.push({n:f.name,m:f.type||'application/octet-stream',s:f.size,d:(r.result+'').split(',')[1]});fin();};
+r.onerror=fin;
+r.readAsDataURL(f);});}
+
+function openCkFile(id,ix){
+const f=((CK.items[id]||{}).files||[])[ix];if(!f)return;
+const bin=atob(f.d);const arr=new Uint8Array(bin.length);
+for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+const blob=new Blob([arr],{type:f.m});const u=URL.createObjectURL(blob);
+const a=document.createElement('a');a.href=u;a.download=f.n;a.click();
+setTimeout(()=>URL.revokeObjectURL(u),3000);}
+
+function delCkAtt(id,kind,ix){
+if(!confirm('Remover este anexo?'))return;
+ckSyncFromDOM();
+const it=CK.items[id];if(it&&it[kind])it[kind].splice(ix,1);
+renderCheck();markDirty();}
+
+function saveTitle(el){
+const id=el.dataset.id;const t=el.innerText.replace(/\u00a0/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+if(!t){el.innerText=DEFT[id]||'';return;}
+if(id.startsWith('cu_')){
+for(const pid in CK.custom)for(const c in CK.custom[pid]){const it=(CK.custom[pid][c]||[]).find(x=>x.id===id);
+if(it){if(it.t!==t){it.t=t;markDirty();}return;}}
+return;}
+CK.items[id]=CK.items[id]||{};
+if(t===DEFT[id]){if(CK.items[id].t){delete CK.items[id].t;markDirty();}}
+else if(CK.items[id].t!==t){CK.items[id].t=t;markDirty();}}
+
 function ckSyncFromDOM(){
+document.querySelectorAll('.ck-title[contenteditable]').forEach(el=>saveTitle(el));
 document.querySelectorAll('.ck-cb').forEach(cb=>{const id=cb.dataset.id;if(!id)return;CK.items[id]=CK.items[id]||{};CK.items[id].done=cb.classList.contains('done');});
 document.querySelectorAll('.ck-fields input').forEach(inp=>{const id=inp.dataset.id;CK.items[id]=CK.items[id]||{};CK.items[id][inp.dataset.field]=inp.value;});}
 
@@ -983,7 +1055,14 @@ const cDone=cat.items.filter(x=>x.done).length;
 h+=`<div style="margin:14px 0 6px;font-size:13px;font-weight:700;color:var(--brand);display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${cat.cat}</span><span style="display:flex;gap:8px;align-items:center;flex-shrink:0"><span style="font-size:10px;color:var(--muted)">${cDone}/${cat.items.length}</span><button class="ck-add-btn" onclick="addCkItem('${proj.id}',this)" data-cat="${cat.cat.replace(/"/g,'&quot;')}" title="Adicionar item">+ item</button>${cat.cu?`<button class="ck-delcat" onclick="delCkCat('${proj.id}',this.dataset.c)" data-c="${cat.cat.replace(/"/g,'&quot;')}" title="Excluir esta categoria">🗑 excluir</button>`:''}</span></div>`;
 cat.items.forEach(item=>{
 const done=item.done||false;
-h+=`<div class="ck-item"><div class="ck-cb${done?' done':''}" data-id="${item.id}" onclick="toggleCk(this)"></div><div class="ck-text" style="flex:1"><div class="ck-title${done?' done':''}">${item.t}${item.custom?' <span class="ck-tag-cu">novo</span>':''}</div><div class="ck-fields"><div class="ck-field"><label>Prazo</label><input type="date" data-id="${item.id}" data-field="prazo" value="${item.prazo||''}" onchange="markDirty()"></div><div class="ck-field"><label>Responsável</label><input type="text" data-id="${item.id}" data-field="resp" value="${(item.resp||'').replace(/"/g,'&quot;')}" placeholder="Nome..." onchange="markDirty()"></div><div class="ck-field"><label>Obs</label><input type="text" data-id="${item.id}" data-field="obs" value="${(item.obs||'').replace(/"/g,'&quot;')}" placeholder="Observação..." onchange="markDirty()"></div></div></div><button class="ck-del" onclick="delCkItem('${item.id}')" title="Excluir item">×</button></div>`;
+h+=`<div class="ck-item"><div class="ck-cb${done?' done':''}" data-id="${item.id}" onclick="toggleCk(this)"></div><div class="ck-text" style="flex:1"><div class="ck-title${done?' done':''}" contenteditable="true" spellcheck="false" data-id="${item.id}" onblur="saveTitle(this)" onkeydown="if(event.key==='Escape')this.blur()" title="Clique para editar o texto — Enter quebra linha">${escH(item.t)}</div>${item.custom?'<span class="ck-tag-cu">novo</span>':''}<div class="ck-fields"><div class="ck-field"><label>Prazo</label><input type="date" data-id="${item.id}" data-field="prazo" value="${item.prazo||''}" onchange="markDirty()"></div><div class="ck-field"><label>Responsável</label><input type="text" data-id="${item.id}" data-field="resp" value="${(item.resp||'').replace(/"/g,'&quot;')}" placeholder="Nome..." onchange="markDirty()"></div><div class="ck-field"><label>Obs</label><input type="text" data-id="${item.id}" data-field="obs" value="${(item.obs||'').replace(/"/g,'&quot;')}" placeholder="Observação..." onchange="markDirty()"></div></div>${(()=>{
+const lks=((CK.items[item.id]||{}).links)||[];
+const fls=((CK.items[item.id]||{}).files)||[];
+let a='<div class="ck-att">';
+lks.forEach((l,ix)=>{a+=`<span class="ck-chip lk"><a href="${escH(l.u)}" target="_blank" rel="noopener" title="${escH(l.u)}">🔗 ${escH(l.t)}</a><button class="ck-chip-x" onclick="delCkAtt('${item.id}','links',${ix})" title="Remover link">×</button></span>`;});
+fls.forEach((f,ix)=>{a+=`<span class="ck-chip fl"><button class="ck-chip-open" onclick="openCkFile('${item.id}',${ix})" title="Baixar ${escH(f.n)}">📎 ${escH(f.n)} <em>${(f.s/1024).toFixed(0)} KB</em></button><button class="ck-chip-x" onclick="delCkAtt('${item.id}','files',${ix})" title="Remover arquivo">×</button></span>`;});
+a+=`<button class="ck-att-btn" onclick="addCkLink('${item.id}')">🔗 + link</button><button class="ck-att-btn" onclick="addCkFile('${item.id}')">📎 + arquivo</button></div>`;
+return a;})()}</div><button class="ck-del" onclick="delCkItem('${item.id}')" title="Excluir item">×</button></div>`;
 });});
 h+=`<div style="margin-top:12px"><button class="ck-add-cat" onclick="addCkCat('${proj.id}')">+ Nova categoria em ${proj.name}</button></div>`;
 h+=`</div>`;});
@@ -1041,7 +1120,8 @@ if(btn){btn.textContent='💾 Salvar Alterações *';btn.style.background='#D977
 function ckPersist(){
 ckSyncFromDOM();
 const state={items:CK.items,custom:CK.custom,deleted:CK.deleted,customCats:CK.customCats,lead:CK.lead,dates:CK.dates};
-localStorage.setItem('ck_ragga_v2',JSON.stringify(state));
+try{localStorage.setItem('ck_ragga_v2',JSON.stringify(state));}
+catch(e){alert('⚠️ O armazenamento do navegador está cheio (provavelmente pelos arquivos anexados). Remova algum anexo ou use o botão "Baixar HTML c/ dados" para guardar tudo no arquivo.');return localStorage.getItem('ck_ragga_time')||'—';}
 const now=new Date().toLocaleString('pt-BR');
 localStorage.setItem('ck_ragga_time',now);
 return now;}
