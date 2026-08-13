@@ -30,10 +30,27 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .tc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(59,39,88,.03)}
 .ct{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:var(--brand);margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
-.ti{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .2s;cursor:pointer}
-.ti:hover{border-color:var(--brand);transform:translateY(-1px)}.ti.hb{border-left:3px solid #1A9F4A}.ti.nb{border-left:3px solid var(--muted);opacity:.75;cursor:default}.ti.nb:hover{transform:none;border-color:var(--border)}.ti.oc{opacity:.5;cursor:default}.ti.oc:hover{transform:none}
-.td{font-size:10px;font-weight:700;color:#E8650A;letter-spacing:1px;margin-bottom:2px}.tn{font-size:13px;font-weight:600;line-height:1.3}.tv{font-size:12px;font-weight:700;color:#1A9F4A;margin-top:3px}
-.tt{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 4px;border-radius:8px;margin-top:3px;display:inline-block}
+.ti{background:var(--white);border:1.5px solid #E4DEF0;border-radius:14px;padding:0 0 12px;transition:all .2s;cursor:pointer;overflow:hidden;box-shadow:0 2px 8px rgba(59,39,88,.06)}
+.ti:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(59,39,88,.16)}
+.ti.dated{border-color:#C9B8E8}
+.ti.dated .ti-top{background:linear-gradient(135deg,#3B2758,#5B3D8A)}
+.ti.nb{cursor:default}.ti.nb:hover{transform:none;border-color:#E4DEF0;box-shadow:0 2px 8px rgba(59,39,88,.06)}
+.ti.oc{opacity:.45;cursor:default}.ti.oc:hover{transform:none}
+.ti-top{display:flex;align-items:center;justify-content:space-between;gap:6px;background:linear-gradient(135deg,#EDE9F5,#E4DEF0);padding:8px 12px;margin-bottom:10px}
+.ti-date{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:.5px}
+.ti.dated .ti-date{color:#fff}
+.ti:not(.dated) .ti-date{color:var(--muted);font-size:10px;font-weight:700}
+.ti-date.nd{text-transform:uppercase;letter-spacing:1px}
+.ti-top .dt-badge{font-size:8px;padding:2px 7px}
+.ti.dated .dt-badge.dt-g{background:rgba(255,255,255,.2);color:#D1FAE5}
+.ti.dated .dt-badge.dt-y{background:rgba(255,255,255,.92);color:#92400E}
+.ti.dated .dt-badge.dt-r{background:#FEE2E2;color:#991B1B}
+.ti.dated .dt-badge.dt-p{background:rgba(255,255,255,.2);color:#EDE9F5}
+.tn{font-size:14px;font-weight:800;line-height:1.3;padding:0 12px;font-family:'Space Grotesk',sans-serif;color:var(--brand)}
+.ti-bot{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 12px 0;flex-wrap:wrap}
+.tv{font-size:13px;font-weight:800;color:#1A9F4A;font-family:'Space Grotesk',sans-serif}
+.tv.nd{color:var(--dim);font-weight:600;font-size:10px}
+.tt{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:8px;display:inline-block}
 .tt.b{background:rgba(26,159,74,.1);color:#1A9F4A}.tt.p{background:rgba(168,155,181,.25);color:var(--text)}.tt.oc{background:rgba(168,155,181,.08);color:var(--dim)}
 .og{display:grid;grid-template-columns:1fr 280px;gap:16px}.cw{position:relative;height:240px}
 .sc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(59,39,88,.03)}
@@ -130,6 +147,30 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0}
 .ck-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700}
 .ck-count{font-size:11px;color:var(--muted);margin-left:auto}
+.ck2-row{display:flex;gap:8px;padding:7px 8px;border-bottom:1px solid var(--border);align-items:flex-start;border-radius:8px;transition:background .12s}
+.ck2-row:hover{background:var(--surface)}
+.ck2-row.done{opacity:.72}
+.ck2-num{width:22px;height:22px;border-radius:50%;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-family:'Space Grotesk',sans-serif}
+.ck2-main{flex:1;min-width:0}
+.ck2-title{font-size:13px;line-height:1.45;padding:2px 6px;margin-left:-6px}
+.ck2-note{font-size:11px;color:#065F46;background:#ECFDF5;border-left:3px solid #059669;border-radius:0 8px 8px 0;padding:4px 6px 4px 10px;margin-top:5px;line-height:1.4;display:flex;align-items:flex-start;gap:4px}
+.ck2-note-t{flex:1;outline:none;cursor:text;border-radius:4px;padding:1px 4px;min-width:0;overflow-wrap:anywhere}
+.ck2-note-t:hover{background:#D1FAE5}
+.ck2-note-t:focus{background:#fff;box-shadow:0 0 0 2px rgba(5,150,105,.25)}
+.ck2-attline{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.ck2-edit{display:grid;grid-template-columns:150px 1fr 1.4fr auto;gap:8px;margin-top:8px;padding:10px;background:var(--white);border:1px dashed var(--brand);border-radius:10px;align-items:end}
+.ck2-edit-att{display:flex;gap:5px}
+.ck2-acts{display:flex;gap:4px;align-items:center;flex-shrink:0;margin-top:1px}
+.ck2-badge{border:1px solid var(--border);background:var(--white);border-radius:8px;padding:3px 8px;font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.ck2-badge:hover{border-color:var(--brand);color:var(--brand)}
+.ck2-badge.dt.has{background:#FEF3C7;border-color:#FDE68A;color:#B45309}
+.ck2-badge.dt.late{background:#FEE2E2;border-color:#FECACA;color:#991B1B}
+.ck2-badge.rp.has{background:#EDE9FE;border-color:#DDD6FE;color:#6D28D9}
+.ck2-badge.ed.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.ck2-badge.n{background:#F5F3FF;border-color:#DDD6FE;color:#6D28D9;cursor:default}
+.ck2-x{background:none;border:none;color:var(--dim);font-size:16px;font-weight:700;cursor:pointer;padding:2px 6px;line-height:1;border-radius:6px;font-family:'Inter',sans-serif;transition:all .15s}
+.ck2-x:hover{color:#DC2626;background:#FEE2E2}
+@media(max-width:760px){.ck2-row{flex-wrap:wrap}.ck2-acts{width:100%;justify-content:flex-end;order:3}.ck2-edit{grid-template-columns:1fr 1fr}.ck2-edit .ck-field:nth-child(3),.ck2-edit-att{grid-column:1/-1}}
 .ck-item{display:flex;align-items:flex-start;gap:10px;padding:10px 8px;border-bottom:1px solid var(--border);transition:background .15s;border-radius:6px}
 .ck-item:hover{background:var(--surface)}
 .ck-item:last-child{border:none}
@@ -142,6 +183,30 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-title:focus{border:1px solid var(--brand);background:var(--white);box-shadow:0 0 0 3px rgba(59,39,88,.08)}
 .ck-title.done{text-decoration:line-through;color:var(--dim)}
 .ck-obs{font-size:10px;color:var(--muted);margin-top:2px}
+.rmap{background:linear-gradient(135deg,#3B2758,#5B3D8A);padding:12px 24px 14px;color:#fff}
+.rmap-title{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;opacity:.75;margin-bottom:9px;font-weight:700}
+.rmap-flow{display:flex;align-items:stretch;gap:9px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.rmap-step{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:7px 14px;display:flex;flex-direction:column;gap:1px;min-width:max-content;justify-content:center}
+.rmap-date{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;line-height:1.1}
+.rmap-nm{font-size:10.5px;font-weight:600;opacity:.95;white-space:nowrap}
+.rmap-cd{font-size:8px;font-weight:700;opacity:.8;letter-spacing:.5px;margin-top:1px}
+.rmap-arrow{opacity:.45;font-size:13px;align-self:center;flex-shrink:0}
+.rmap-next{display:flex;flex-direction:column;gap:4px;min-width:max-content;justify-content:center}
+.rmap-next-l{font-size:7.5px;text-transform:uppercase;letter-spacing:1.5px;opacity:.65;font-weight:700}
+.rmap-chips{display:flex;gap:5px}
+.rmap-chip{background:rgba(255,255,255,.09);border:1px dashed rgba(255,255,255,.3);border-radius:10px;padding:3px 10px;font-size:9.5px;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .15s}
+.rmap-chip:hover{background:rgba(255,255,255,.22)}
+.rmap-chip.add{border-style:solid;background:rgba(255,255,255,.2);font-weight:800}
+.rmap-step{cursor:pointer;transition:all .15s}
+.rmap-step:hover{background:rgba(255,255,255,.22)}
+.rmap-edit{display:flex;align-items:center;gap:8px;margin-top:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:8px 12px;flex-wrap:wrap}
+.rmap-edit-nm{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px}
+.rmap-edit input[type=date]{background:rgba(255,255,255,.92);border:none;border-radius:8px;padding:5px 8px;font-family:'Inter',sans-serif;font-size:11px;color:#3B2758;font-weight:600}
+.rmap-btn{background:rgba(255,255,255,.92);color:#3B2758;border:none;border-radius:8px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+.rmap-btn:hover{background:#fff}
+.rmap-btn.danger{background:rgba(254,226,226,.95);color:#991B1B}
+.rmap-btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+@media(max-width:768px){.rmap{padding:10px 12px 12px}}
 .ck-progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-bottom:16px}
 .ck-progress-bar{height:100%;border-radius:3px;transition:width .3s}
 .ck-stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
@@ -153,6 +218,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 .ck-fbtn{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:5px 12px;font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;gap:4px}
 .ck-fbtn:hover{border-color:var(--brand);color:var(--brand)}
 .ck-fbtn.a{background:var(--brand);border-color:var(--brand);color:#fff}
+.ck-fbtn.st.pend.a{background:#D97706;border-color:#D97706}
+.ck-fbtn.st.done.a{background:#059669;border-color:#059669}
 .ck-fields{display:grid;grid-template-columns:1fr 1fr 2fr;gap:6px;margin-top:6px;padding-left:30px}
 .ck-field{display:flex;flex-direction:column;gap:2px}
 .ck-field label{font-size:7px;text-transform:uppercase;letter-spacing:1px;color:var(--dim);font-weight:600}
@@ -228,6 +295,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 <div class="hs" id="hs">Inaugurações Set–Out 2026</div></div>
 <button class="hero-toggle" id="heroTgl" onclick="toggleHero()">👁 Mostrar investimento total</button>
 </div>
+<div class="rmap" id="rmap"></div>
 <div class="tabs"><button class="tab a" onclick="showTab('orc')">📊 Orçamentos</button><button class="tab" onclick="showTab('cf')">💰 Fluxo de Caixa</button><button class="tab" onclick="showTab('pend')">📋 Pendências Ivan</button><button class="tab" onclick="showTab('sim')">⚙️ Simulador</button><button class="tab" onclick="showTab('check')">✅ Checklist</button></div>
 <div class="fl" id="flBar">
 <button class="fb a" data-f="all"><span class="d" style="background:var(--brand)"></span>Todos</button>
@@ -257,7 +325,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 const F=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
 const FD=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const P=(v,t)=>((v/t)*100).toFixed(1)+'%';
-const G=3487078.6799999997;
+const G=4446270.68;
 const CF={"months": ["Ago/26", "Set/26", "Out/26", "Nov/26", "Dez/26", "Jan/27", "Fev/27", "Mar/27", "Abr/27", "Mai/27", "Jun/27"], "projects": [{"name": "BCaldi (consolidado)", "color": "#E8650A", "key": "bcaldi", "values": [20000, 15000, 15000, 15000, 15000, 15000, 15000, 0, 0, 0, 0]}, {"name": "Vespa CD Camb\u00e9", "color": "#E8650A", "key": "vespa", "values": [85812.0, 31812.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"name": "Galileu 01 Leonor", "color": "#3B6FD6", "key": "galileu01", "values": [156967.35, 121554.02, 49565.71, 37276.38, 21007.69, 17282.69, 14337.86, 2050.0, 2050.0, 2050.0, 2050.0]}, {"name": "Galileu 03 Vila Casoni", "color": "#0891B2", "key": "galileu03", "values": [129804.67, 101176.67, 65376.74, 43676.38, 27407.69, 17082.69, 14337.86, 2050.0, 2050.0, 2050.0, 2050.0]}, {"name": "Galileu 02 Zona Sul", "color": "#D946EF", "key": "galileu02", "values": [72365.28, 80465.89, 41140.98, 22369.19, 17569.51, 7968.51, 5408.64, 0.0, 0.0, 0.0, 0.0]}, {"name": "Pepito", "color": "#7B4FBF", "key": "pepito", "values": [11992.66, 19944.66, 9944.68, 7795.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"name": "Mapoli", "color": "#D63B3B", "key": "mapoli", "values": [29157.33, 18657.33, 3561.34, 3320.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"name": "Central Delivery", "color": "#059669", "key": "centraldelivery", "values": [22021.92, 13792.13, 13292.15, 15035.47, 6535.51, 3526.69, 335.41, 0.0, 0.0, 0.0, 0.0]}, {"name": "Farmelhor", "color": "#16A34A", "key": "farmelhor", "values": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"name": "Churr. Matuza", "color": "#92400E", "key": "matuza", "values": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0]}, {"name": "Galileu 04 VG", "color": "#6D28D9", "key": "galileu04", "values": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0, 0.0, 0.0]}], "totals": [828121.21, 702402.7, 497881.6, 444472.42, 387520.4, 360860.58, 149419.77, 104100.0, 4100.0, 4100.0, 4100.0], "cumulative": [828121.21, 1530523.91, 2028405.51, 2472877.93, 2860398.33, 3221258.91, 3370678.68, 3474778.68, 3478878.68, 3482978.68, 3487078.68], "detail": {"bcaldi": [{"d": "BCaldi \u2014 Todas expans\u00f5es", "v": 110000, "pg": "Ent.20k + 6x R$15k", "vals": [20000, 15000, 15000, 15000, 15000, 15000, 15000, 0, 0, 0, 0]}], "mapoli": [{"d": "Aumento de Forno", "v": 22000, "pg": "A definir", "vals": [11000, 11000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Fritadeira", "v": 13280, "pg": "Entrada+3x", "vals": [3320.0, 3320.0, 3320.0, 3320.0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Influencers", "v": 10000, "pg": "\u00c0 vista", "vals": [10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Mesa Posta (proj.)", "v": 8192, "pg": "2x", "vals": [4096, 4096, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Uniformes", "v": 724, "pg": "3x", "vals": [241.33, 241.33, 241.34, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Planta", "v": 500, "pg": "1x", "vals": [500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "pepito": [{"d": "Fritadeira Mult Solution", "v": 13280, "pg": "Entrada + 3x", "vals": [3320.0, 3320.0, 3320.0, 3320.0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Freezer Loja", "v": 5600, "pg": "3x (pedir 18/ago)", "vals": [1866.66, 1866.66, 1866.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Juliana Parede", "v": 1548, "pg": "Ago", "vals": [1548, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Embalagens", "v": 17900, "pg": "4x", "vals": [4475.0, 4475.0, 4475.0, 4475.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Influencers", "v": 10000, "pg": "Inaugura\u00e7\u00e3o set", "vals": [0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Uniformes", "v": 849, "pg": "3x", "vals": [283.0, 283.0, 283.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Card\u00e1pio", "v": 500, "pg": "Ago", "vals": [500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "galileu01": [{"d": "Parcelas jul \u2192 ago", "v": 131967.35, "pg": "Remanejado", "vals": [131967.35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Reforma Cadeiras", "v": 48000, "pg": "50/50", "vals": [0, 24000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Dedique Planejados", "v": 32930, "pg": "Ent.+5x15d", "vals": [0, 10976.67, 5488.33, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Sat\u00e9lite C\u00e2mera/Rede", "v": 19900, "pg": "Ent.5k+4x", "vals": [0, 3725.0, 3725.0, 3725.0, 3725.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Paisagismo", "v": 15000, "pg": "2x", "vals": [0, 7500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Forno Pietro+Abre Pizza", "v": 41400, "pg": "Ent.20.9k+10x", "vals": [0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0]}, {"d": "Construnox", "v": 31327, "pg": "7x", "vals": [0, 4475.28, 4475.28, 4475.28, 4475.28, 4475.28, 4475.32, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-200AI 3x", "v": 23970, "pg": "7x", "vals": [0, 3424.28, 3424.28, 3424.28, 3424.28, 3424.28, 3424.32, 0.0, 0.0, 0.0, 0.0]}, {"d": "Freezer VF55FT 3x", "v": 17041, "pg": "4x", "vals": [0, 4260.25, 4260.25, 4260.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Prolar", "v": 15000, "pg": "7x", "vals": [0, 2142.85, 2142.85, 2142.85, 2142.85, 2142.85, 2142.9, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fritadeira Digital", "v": 13980, "pg": "Ent.+5x", "vals": [0, 2330.0, 2330.0, 2330.0, 2330.0, 2330.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Climatizador", "v": 11000, "pg": "Ent.10k+5x", "vals": [0, 200.0, 200.0, 200.0, 200.0, 200.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-250AI", "v": 10857, "pg": "7x", "vals": [0, 1551.0, 1551.0, 1551.0, 1551.0, 1551.0, 1551.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Cortador Frios", "v": 8372, "pg": "4x", "vals": [0, 2093.0, 2093.0, 2093.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Espa\u00e7o Kids", "v": 6490, "pg": "Ent.+2x", "vals": [0, 2163.33, 2163.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Amassadeira", "v": 6439.45, "pg": "4x", "vals": [0, 1609.86, 1609.86, 1609.87, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Processador PA7", "v": 5691, "pg": "4x", "vals": [0, 1422.75, 1422.75, 1422.75, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Impressora 7x", "v": 3913, "pg": "3x", "vals": [0, 1304.33, 1304.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Aquecedor Frituras", "v": 2490, "pg": "Ent.+5x", "vals": [0, 415.0, 415.0, 415.0, 415.0, 415.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fog\u00e3o 4 Bocas 2x", "v": 2380, "pg": "7x", "vals": [0, 340.0, 340.0, 340.0, 340.0, 340.0, 340.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balan\u00e7a", "v": 1891.25, "pg": "4x", "vals": [0, 472.81, 472.81, 472.82, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Liquidificador 2x", "v": 1240, "pg": "7x", "vals": [0, 177.14, 177.14, 177.14, 177.14, 177.14, 177.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Extrator Suco", "v": 1240, "pg": "7x", "vals": [0, 177.14, 177.14, 177.14, 177.14, 177.14, 177.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Embalagens", "v": 25640, "pg": "4x", "vals": [0, 6410.0, 6410.0, 6410.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Influencers", "v": 10000, "pg": "Inaugura\u00e7\u00e3o", "vals": [0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Uniformes", "v": 10000, "pg": "3x", "vals": [0, 3333.33, 3333.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Card\u00e1pio", "v": 10000, "pg": "Jul", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Insumos Iniciais", "v": 50000, "pg": "2x", "vals": [25000, 25000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "galileu03": [{"d": "Parcelas jul \u2192 ago", "v": 104804.67, "pg": "Remanejado", "vals": [104804.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Dedique Planejados", "v": 28790, "pg": "Ent.+2x", "vals": [0, 9596.66, 9596.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Sat\u00e9lite C\u00e2mera/Rede", "v": 19900, "pg": "Ent.+4x", "vals": [0, 3725.0, 3725.0, 3725.0, 3725.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Espa\u00e7o Kids", "v": 13480, "pg": "Ent.+2x", "vals": [0, 4493.33, 4493.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Revestimento Parede", "v": 9303, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Som Elegance", "v": 8918, "pg": "Ent.+2x", "vals": [0, 2972.66, 2972.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Reparo Gesso Kids", "v": 800, "pg": "30 dias", "vals": [0, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Forno Pietro+Abre Pizza", "v": 41400, "pg": "Ent.+10x", "vals": [0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0, 2050.0]}, {"d": "Climatizador", "v": 33000, "pg": "5x", "vals": [0, 6600.0, 6600.0, 6600.0, 6600.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Construnox", "v": 31327, "pg": "7x", "vals": [0, 4475.28, 4475.28, 4475.28, 4475.28, 4475.28, 4475.32, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-200AI 3x", "v": 23970, "pg": "7x", "vals": [0, 3424.28, 3424.28, 3424.28, 3424.28, 3424.28, 3424.32, 0.0, 0.0, 0.0, 0.0]}, {"d": "Freezer VF55FT 3x", "v": 17041, "pg": "4x", "vals": [0, 4260.25, 4260.25, 4260.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Prolar", "v": 15000, "pg": "7x", "vals": [0, 2142.85, 2142.85, 2142.85, 2142.85, 2142.85, 2142.9, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fritadeira Digital", "v": 13980, "pg": "Ent.+5x", "vals": [0, 2330.0, 2330.0, 2330.0, 2330.0, 2330.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-250AI", "v": 10857, "pg": "7x", "vals": [0, 1551.0, 1551.0, 1551.0, 1551.0, 1551.0, 1551.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Cortador Frios", "v": 8372, "pg": "4x", "vals": [0, 2093.0, 2093.0, 2093.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Amassadeira", "v": 6439.45, "pg": "4x", "vals": [0, 1609.86, 1609.86, 1609.87, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Processador PA7", "v": 5691, "pg": "4x", "vals": [0, 1422.75, 1422.75, 1422.75, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Impressora 7x", "v": 3913, "pg": "3x", "vals": [0, 1304.33, 1304.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Aquecedor Frituras", "v": 2490, "pg": "Ent.+5x", "vals": [0, 415.0, 415.0, 415.0, 415.0, 415.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fog\u00e3o 4 Bocas", "v": 2380, "pg": "7x", "vals": [0, 340.0, 340.0, 340.0, 340.0, 340.0, 340.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balan\u00e7a", "v": 1891.25, "pg": "4x", "vals": [0, 472.81, 472.81, 472.82, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Liquidificador 2x", "v": 1240, "pg": "7x", "vals": [0, 177.14, 177.14, 177.14, 177.14, 177.14, 177.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Extrator Suco", "v": 1240, "pg": "7x", "vals": [0, 177.14, 177.14, 177.14, 177.14, 177.14, 177.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Embalagens", "v": 25640, "pg": "4x", "vals": [0, 6410.0, 6410.0, 6410.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Influencers", "v": 10000, "pg": "Inaugura\u00e7\u00e3o", "vals": [0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Uniformes", "v": 10000, "pg": "3x", "vals": [0, 3333.33, 3333.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Card\u00e1pio", "v": 10000, "pg": "Jul", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Insumos Iniciais", "v": 50000, "pg": "2x", "vals": [25000, 25000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "galileu02": [{"d": "Parcelas jul \u2192 ago", "v": 47365.28, "pg": "Remanejado", "vals": [47365.28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Sat\u00e9lite C\u00e2mera/Rede", "v": 19900, "pg": "Ent.6.4k+3x", "vals": [0, 4479.66, 4479.66, 4479.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Dedique/Item Inicial", "v": 16799.75, "pg": "Ent.4k+5x", "vals": [0, 2559.95, 2559.95, 2559.95, 2559.95, 2559.95, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Paisagismo", "v": 9500, "pg": "4x boleto", "vals": [0, 2375.0, 2375.0, 2375.0, 2375.0, 0, 0, 0, 0, 0, 0]}, {"d": "Pel\u00edcula Solar", "v": 8165, "pg": "Boleto 15/45/75", "vals": [0, 2721.66, 2721.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "SJ Serralheria", "v": 4845, "pg": "PIX", "vals": [0, 2097, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Banco Externo", "v": 2000, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Aislan Hidr\u00e1ulica", "v": 1850, "pg": "PIX", "vals": [0, 950, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Super AR Tubula\u00e7\u00e3o", "v": 1200, "pg": "2x boleto", "vals": [0, 600.0, 600.0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Moldul\u00e2ndia", "v": 840, "pg": "Boleto", "vals": [0, 840, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Reparo Forro", "v": 450, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Dep. S\u00e3o Marcos", "v": 438, "pg": "1x boleto", "vals": [0, 438, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Construnox", "v": 25250, "pg": "Ent.+4x", "vals": [0, 5050.0, 5050.0, 5050.0, 5050.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Prolar", "v": 20000, "pg": "7x", "vals": [0, 2857.14, 2857.14, 2857.14, 2857.14, 2857.14, 2857.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fritadeira Digital", "v": 13980, "pg": "Ent.+2x", "vals": [0, 4660.0, 4660.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-250AI", "v": 9500, "pg": "7x", "vals": [0, 1357.14, 1357.14, 1357.14, 1357.14, 1357.14, 1357.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balc\u00e3o GBFE-200AI 2x", "v": 8500, "pg": "5x", "vals": [0, 1700.0, 1700.0, 1700.0, 1700.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Cortador Frios", "v": 8372, "pg": "3x", "vals": [0, 2790.66, 2790.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Amassadeira", "v": 6263, "pg": "3x", "vals": [0, 2087.66, 2087.68, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Processador PA7", "v": 5691, "pg": "7x", "vals": [0, 813.0, 813.0, 813.0, 813.0, 813.0, 813.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Impressora 6x", "v": 3354, "pg": "3x", "vals": [0, 1118.0, 1118.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Aquecedor Frituras", "v": 2490, "pg": "Ent.+2x", "vals": [0, 830.0, 830.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fog\u00e3o 4 Bocas", "v": 2380, "pg": "5x", "vals": [0, 476.0, 476.0, 476.0, 476.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Balan\u00e7a", "v": 1891.25, "pg": "3x", "vals": [0, 630.41, 630.43, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Extrator Suco", "v": 1429, "pg": "7x", "vals": [0, 204.14, 204.14, 204.14, 204.14, 204.14, 204.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Liquidificador 2x", "v": 1240, "pg": "7x", "vals": [0, 177.14, 177.14, 177.14, 177.14, 177.14, 177.16, 0.0, 0.0, 0.0, 0.0]}, {"d": "Forno AP 104L", "v": 960, "pg": "3x", "vals": [0, 320.0, 320.0, 320.0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Influencers", "v": 10000, "pg": "\u00c0 vista ago", "vals": [0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Uniformes", "v": 10000, "pg": "3x", "vals": [0, 3333.33, 3333.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Insumos Iniciais", "v": 50000, "pg": "2x", "vals": [25000, 25000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "vespa": [{"d": "Parcelas jul \u2192 ago", "v": 85812.0, "pg": "Remanejado", "vals": [85812.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "MO El\u00e9trica (Copeluz)", "v": 17500, "pg": "PIX", "vals": [0, 8750, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Material El\u00e9trico (est.)", "v": 15000, "pg": "2x", "vals": [0, 7500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "MO Hidr\u00e1ulica (Lico)", "v": 12000, "pg": "PIX", "vals": [0, 6000, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Material Hidr\u00e1ulico (est.)", "v": 15000, "pg": "2x", "vals": [0, 7500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Limpeza Caixa \u00c1gua", "v": 2000, "pg": "1x", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Superar \u2014 4 C\u00e2maras", "v": 29000, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Serralheria total", "v": 17500, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Assoalho (Alisson)", "v": 5500, "pg": "PIX", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Top Line Gesso", "v": 4124, "pg": "2x", "vals": [0, 2062, 0, 0, 0, 0, 0, 0, 0, 0, 0]}], "centraldelivery": [{"d": "Parcelas jul \u2192 ago", "v": 22021.92, "pg": "Remanejado", "vals": [22021.92, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Jeferson Infra CC", "v": 22427.79, "pg": "Ent.40%+5x", "vals": [0, 2691.33, 2691.33, 2691.33, 2691.33, 2691.35, 0, 0, 0, 0, 0]}, {"d": "Mafra Forro/Drywall", "v": 15044.04, "pg": "5x", "vals": [0, 3008.8, 3008.8, 3008.8, 3008.84, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Ilumina\u00e7\u00e3o e El\u00e9trica", "v": 10000, "pg": "4x", "vals": [0, 2500.0, 2500.0, 2500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "TV 75 polegadas", "v": 5000, "pg": "Outubro", "vals": [0, 0, 0, 5000, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Transfer\u00eancia AC", "v": 5500, "pg": "3x", "vals": [0, 1833.33, 1833.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Adequa\u00e7\u00e3o Climatizadores", "v": 4270, "pg": "3x", "vals": [0, 1423.33, 1423.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Uniformes (Ruvest)", "v": 4000, "pg": "Ent.+3x", "vals": [0, 1000.0, 1000.0, 1000.0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Prateleiras Estoque", "v": 2347.45, "pg": "7x", "vals": [0, 335.34, 335.34, 335.34, 335.34, 335.34, 335.41, 0.0, 0.0, 0.0, 0.0]}, {"d": "Pintura Sala", "v": 1500, "pg": "15 dias", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Material de Pintura", "v": 1000, "pg": "2x", "vals": [0, 500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Porta", "v": 650, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Cortina", "v": 300, "pg": "\u00c0 vista", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {"d": "Facial Porta", "v": 1500, "pg": "5x", "vals": [0, 300.0, 300.0, 300.0, 300.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, {"d": "Fechamento Buraco Laje", "v": 1000, "pg": "5x", "vals": [0, 200.0, 200.0, 200.0, 200.0, 200.0, 0.0, 0.0, 0.0, 0.0, 0.0]}], "farmelhor": [{"d": "CAPEX Farmelhor", "v": 600000, "pg": "Estimado 6x", "vals": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0, 0.0, 0.0]}], "matuza": [{"d": "CAPEX Churrascaria Matuza", "v": 800000, "pg": "Estimado 8x", "vals": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0]}], "galileu04": [{"d": "CAPEX Galileu 04 VG", "v": 600000, "pg": "Estimado 6x", "vals": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 0.0, 0.0, 0.0, 0.0, 0.0]}]}};
 
 const TL=[
@@ -273,7 +341,7 @@ const TL=[
 {dt:'—',nm:'El Patrón',tp:'no',pk:'elpatron'},{dt:'—',nm:'Noé W. Spranger',tp:'no'},
 {dt:'—',nm:'Galileu 04 Vasco da Gama',v:600000,tp:'b',k:'galileu04',pk:'galileu04'},
 {dt:'—',nm:'Biggs/Isaías Ibiporã',tp:'no'},
-{dt:'—',nm:'Farmelhor',v:600000,tp:'b',k:'farmelhor',pk:'farmelhor'},{dt:'—',nm:'Churrascaria Matuza',v:800000,tp:'b',k:'matuza',pk:'matuza'},
+{dt:'—',nm:'Farmelhor',v:736119,tp:'b',k:'farmelhor',pk:'farmelhor'},{dt:'—',nm:'Churrascaria Matuza',v:1623073,tp:'b',k:'matuza',pk:'matuza'},
 {dt:'—',nm:'Várias Praças Ivaiporã',tp:'no'},
 ];
 
@@ -300,12 +368,37 @@ secs:[{t:'Elétrica',i:'⚡',c:'#3B6FD6',tot:32500,r:[{d:'MO Elétrica (Copeluz)
 centraldelivery:{name:'Central de Delivery',date:'—',type:'Implantação',color:'#059669',total:74539.28,meta:'Mafra (economia R$ 5.666)',
 cats:[{n:'Infra CC (Jeferson)',v:22427.79,c:'#7B4FBF'},{n:'Forro/Drywall (Mafra)',v:15044.04,c:'#059669'},{n:'Iluminação/Elétrica',v:10000,c:'#3B6FD6'},{n:'Climatização',v:9770,c:'#0891B2'},{n:'TV+Equip.',v:5000,c:'#7B4FBF'},{n:'Outros',v:12297.45,c:'#C9940A'}],
 secs:[{t:'Infraestrutura Call Center',i:'📞',c:'#7B4FBF',tot:22427.79,pg:1,r:[{d:'Jeferson — Infra CC (5% desc.)',v:22427.79,p:'Ent.40% + 5x'}]},{t:'Forro/Drywall/Isolamento',i:'🧱',c:'#059669',tot:15044.04,pg:1,r:[{d:'Mafra Acabamentos ✅',v:15044.04,p:'5x'},{d:'Gesso Top Line (preterido)',v:18753.75,p:'—'}]},{t:'Iluminação e Elétrica',i:'💡',c:'#3B6FD6',tot:10000,pg:1,r:[{d:'Iluminação e Elétrica ⚠️ estimado',v:10000,p:'4x'}]},{t:'Climatização',i:'❄️',c:'#0891B2',tot:9770,pg:1,r:[{d:'Transferência AC (BG01→BG07)',v:5500,p:'3x'},{d:'Adequação Climatizadores',v:4270,p:'3x'}]},{t:'Equipamentos',i:'📺',c:'#7B4FBF',tot:5000,pg:1,r:[{d:'TV 75 polegadas ⚠️ estimado',v:5000,p:'Outubro'}]},{t:'Uniformes',i:'👕',c:'#E8650A',tot:4000,pg:1,r:[{d:'Ruvest ⚠️ estimado',v:4000,p:'Entrada + 3x'}]},{t:'Outros',i:'📦',c:'#C9940A',tot:8297.45,pg:1,r:[{d:'Prateleiras Estoque',v:2347.45,p:'7x'},{d:'Facial Porta',v:1500,p:'5x'},{d:'Pintura Sala',v:1500,p:'15 dias'},{d:'Fechamento Buraco Laje',v:1000,p:'5x'},{d:'Material de Pintura',v:1000,p:'2x'},{d:'Porta',v:650,p:'À vista'},{d:'Cortina',v:300,p:'À vista'}]}],notes:[{c:'#059669',t:'<strong>Economia Mafra:</strong> R$ 5.666 no forro vs fornecedores iniciais.'},{c:'#E8650A',t:'🏗 <strong>Piso Vinílico Mafra (R$ 13.295,36):</strong> removido do orçamento — rever em outubro.'},{c:'#3B6FD6',t:'⚠️ <strong>Valores estimados:</strong> Iluminação/Elétrica, TV 75\", Uniformes Ruvest — aguardando definitivo.'},{c:'#7B4FBF',t:'📹 <strong>Câmeras IA (Jeferson R$ 18.000):</strong> removida — voltar a falar em 2027.'},{c:'#3B6FD6',t:'🖥 <strong>Equipamentos TI (sem custo):</strong> 18 monitores + 15 notebooks + 3 monitores extra (gerente) — já disponíveis.'},{c:'#C9940A',t:'🪑 <strong>Mesa:</strong> primeiro usar a do depósito, depois avaliar a do escritório.'}]},
-farmelhor:{name:'Farmelhor',date:'—',type:'Abertura',color:'#16A34A',total:600000,meta:'CAPEX total estimado',
-cats:[{n:'CAPEX Total',v:600000,c:'#16A34A'}],
-secs:[{t:'CAPEX Estimado',i:'💰',c:'#16A34A',tot:600000,r:[{d:'CAPEX total do projeto',v:600000}]}],notes:[{c:'#16A34A',t:'⚠️ <strong>Valor estimado:</strong> orçamento detalhado a desenvolver.'}]},
-matuza:{name:'Churrascaria Matuza',date:'—',type:'Abertura',color:'#92400E',total:800000,meta:'CAPEX total estimado',
-cats:[{n:'CAPEX Total',v:800000,c:'#92400E'}],
-secs:[{t:'CAPEX Estimado',i:'💰',c:'#92400E',tot:800000,r:[{d:'CAPEX total do projeto',v:800000}]}],notes:[{c:'#92400E',t:'⚠️ <strong>Valor estimado:</strong> orçamento detalhado a desenvolver.'}]},
+farmelhor:{name:'Farmelhor — Sunset Mall',date:'Out/2026',type:'Abertura',color:'#16A34A',total:736119,meta:'CC: ML Consultoria em Food Service · Solicitante: Ivan Neves',
+cats:[{n:'Insumos Iniciais',v:500000,c:'#16A34A'},{n:'Mobiliário',v:175679,c:'#059669'},{n:'Com. Visual',v:25000,c:'#E8650A'},{n:'Climatização',v:23600,c:'#3B6FD6'},{n:'Tecnologia',v:11840,c:'#6D28D9'}],
+secs:[
+{t:'Insumos Iniciais (Medicamentos)',i:'💊',c:'#16A34A',tot:500000,r:[{d:'Estoque inicial de medicamentos',v:500000}]},
+{t:'Mobiliário — Metalfarma',i:'🪑',c:'#059669',tot:175679,r:[{d:'Mobiliário completo Metalfarma',v:175679}]},
+{t:'Climatização — Europa',i:'❄️',c:'#3B6FD6',tot:23600,pg:1,r:[{d:'Climatizadores Europa (02 unidades)',v:23600,p:'30% entrada + 5 boletos'}]},
+{t:'Tecnologia & Infra',i:'💻',c:'#6D28D9',tot:11840,pg:1,r:[{d:'Automação — Elegance',v:5000,p:'Entrada + 1 boleto'},{d:'Câmeras e Rede — Satélite',v:5500,p:'Entrada + 1 parcela'},{d:'Passagem de cabos e mão de obra',v:1340,p:'A negociar'}]},
+{t:'Comunicação Visual — BCaldi',i:'🎨',c:'#E8650A',tot:25000,r:[{d:'Comunicação visual (estimado)',v:25000,st:'est'}]}],
+notes:[{c:'#16A34A',t:'📅 <strong>Inauguração prevista:</strong> Outubro/2026. Valores sujeitos à aprovação e contratação dos fornecedores.'}]},
+matuza:{name:'Churrascaria Matuza',date:'—',type:'Abertura',color:'#92400E',total:1623073,meta:'Orçamento consolidado — decisão de climatização pendente',
+cats:[{n:'Obra & Implantação',v:1198270,c:'#92400E'},{n:'Equipamentos Oper.',v:424803,c:'#E8650A'}],
+secs:[
+{t:'Obra, Infraestrutura & Implantação',i:'🏗',c:'#92400E',tot:1198270,r:[{d:'Obra, infraestrutura e implantação (consolidado — inclui itens estratégicos abaixo)',v:1198270}]},
+{t:'Equipamentos Operacionais',i:'⚙️',c:'#E8650A',tot:424803,r:[{d:'Fornos combinados Rational, conservadores, balcões refrigerados, buffets, câmaras frias, churrasqueira profissional, fogões industriais, máquina de gelo, inox, pequenos equipamentos e 1º estoque operacional',v:424803}]},
+{t:'❗ Climatização — Decisão Prioritária da Diretoria',i:'❄️',c:'#3B6FD6',r:[
+{d:'Opção 01 — VRV/VRF Catuaí (equip. R$ 285.000 + inst. R$ 90.000)',v:375000,st:'pend'},
+{d:'Opção 02 — Split Inverter Individual Alison (21 evaporadoras)',v:288000,st:'pend'},
+{d:'Opção 03 — Climatizadores Europa (13 equipamentos)',v:148320,st:'pend'}]},
+{t:'Itens Estratégicos (contidos no consolidado)',i:'📌',c:'#6D28D9',r:[
+{d:'Estrutura Steel Frame — Rovano',v:37890},
+{d:'Fechamento em Vidro — Casa do Vidro',v:32500},
+{d:'Rede, Dados e CFTV — JK Telecom',v:26000},
+{d:'Paisagismo — plantio das árvores',v:23000},
+{d:'Paisagismo — finalização (estimado)',v:35000,st:'est'},
+{d:'Sistema de Som — equipamentos',v:15000},
+{d:'Sistema de Som — cabeamento e instalação',v:4560},
+{d:'Mobiliário — Mix Mobília (estimado)',v:50000,st:'est'},
+{d:'Mobiliário — Della Bruna (estimado)',v:130000,st:'est'},
+{d:'Comunicação Visual — BCaldi (estimado)',v:50000,st:'est'}]}],
+notes:[{c:'#3B6FD6',t:'❄️ <strong>Climatização:</strong> maior investimento individual do projeto (R$ 148k–R$ 375k conforme opção) — aguardando definição da Diretoria para prosseguir a contratação.'},
+{c:'#92400E',t:'💳 <strong>Condições comerciais:</strong> entrada 30–50% + saldo em 4 a 7 boletos; algumas propostas com desconto à vista. Aprovações pendentes: climatização, Steel Frame, vidro, paisagismo, som, mobiliário, com. visual e equipamentos.'}]},
 galileu04:{name:'Galileu 04 Vasco da Gama',date:'—',type:'Abertura',color:'#6D28D9',total:600000,meta:'CAPEX total estimado',
 cats:[{n:'CAPEX Total',v:600000,c:'#6D28D9'}],
 secs:[{t:'CAPEX Estimado',i:'💰',c:'#6D28D9',tot:600000,r:[{d:'CAPEX total do projeto',v:600000}]}],notes:[{c:'#6D28D9',t:'⚠️ <strong>Valor estimado:</strong> orçamento detalhado a desenvolver.'}]}
@@ -323,7 +416,7 @@ if(n<0){cls='dt-p';tx='inaugurada há '+(-n)+'d';}else if(n===0){cls='dt-r';tx='
 return `<span class="dt-badge ${cls}">${tx}</span>`;}
 function setProjDate(id,val){CK.dates=CK.dates||{};if(val)CK.dates[id]=val;else delete CK.dates[id];
 try{const st=JSON.parse(localStorage.getItem('ck_ragga_v2')||'{}');st.dates=CK.dates;localStorage.setItem('ck_ragga_v2',JSON.stringify(st));localStorage.setItem('ck_ragga_time',new Date().toLocaleString('pt-BR'));}catch(e){}
-ckSyncFromDOM();renderCheck();
+ckSyncFromDOM();renderCheck();renderRoadmap();try{if(!window._orcK)ro();}catch(e){}
 const toast=document.getElementById('toast');if(toast){toast.textContent='📅 Data de inauguração atualizada!';toast.style.display='block';setTimeout(()=>toast.style.display='none',1800);}}
 
 function toggleHero(){
@@ -335,13 +428,51 @@ b.classList.toggle('open',show);
 try{localStorage.setItem('hero_visible',show?'1':'0');}catch(e){}}
 (function(){try{if(localStorage.getItem('hero_visible')==='1'){const w=document.getElementById('heroWrap'),b=document.getElementById('heroTgl');w.style.display='';b.textContent='🙈 Ocultar investimento total';b.classList.add('open');}}catch(e){}})();
 
+let rmapEdit=null;
+function persistRmapx(){try{const st=JSON.parse(localStorage.getItem('ck_ragga_v2')||'{}');st.rmapx=CK.rmapx||[];st.dates=CK.dates||{};localStorage.setItem('ck_ragga_v2',JSON.stringify(st));localStorage.setItem('ck_ragga_time',new Date().toLocaleString('pt-BR'));}catch(e){}}
+function rmapOpen(id,nm,cu){rmapEdit={id,nm,cu:!!cu};renderRoadmap();setTimeout(()=>{const i=document.getElementById('rmapDateIn');if(i)i.focus();},50);}
+function rmapClose(){rmapEdit=null;renderRoadmap();}
+function rmapSave(){if(!rmapEdit)return;const v=document.getElementById('rmapDateIn').value;const id=rmapEdit.id;rmapEdit=null;setProjDate(id,v||'');persistRmapx();}
+function rmapClearDate(){if(!rmapEdit)return;const id=rmapEdit.id;rmapEdit=null;setProjDate(id,'');persistRmapx();}
+function rmapAdd(){const nm=prompt('Nome do novo projeto:');if(!nm||!nm.trim())return;CK.rmapx=CK.rmapx||[];const id='rx_'+Date.now();CK.rmapx.push({id,nm:nm.trim()});persistRmapx();rmapOpen(id,nm.trim(),true);}
+function rmapRename(){if(!rmapEdit||!rmapEdit.cu)return;const nv=prompt('Novo nome:',rmapEdit.nm);if(!nv||!nv.trim())return;const x=(CK.rmapx||[]).find(x=>x.id===rmapEdit.id);if(x){x.nm=nv.trim();rmapEdit.nm=nv.trim();}persistRmapx();renderRoadmap();}
+function rmapDel(){if(!rmapEdit||!rmapEdit.cu)return;if(!confirm('Excluir "'+rmapEdit.nm+'" do roadmap?'))return;const id=rmapEdit.id;CK.rmapx=(CK.rmapx||[]).filter(x=>x.id!==id);if(CK.dates)delete CK.dates[id];rmapEdit=null;persistRmapx();renderRoadmap();}
+function renderRoadmap(){const el=document.getElementById('rmap');if(!el)return;
+const base=TL.filter(t=>t.tp!=='oc').map(t=>({nm:t.nm,id:t.pk||'',iso:(t.pk&&getDate(t.pk))||'',cu:false}));
+const extra=(CK.rmapx||[]).map(x=>({nm:x.nm,id:x.id,iso:getDate(x.id)||'',cu:true}));
+const items=base.concat(extra);
+const dated=items.filter(i=>i.iso).sort((a,b)=>a.iso<b.iso?-1:1);
+const und=items.filter(i=>!i.iso);
+const today=new Date();today.setHours(0,0,0,0);
+const esc=s=>String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');
+let h=`<div class="rmap-title">🚀 Roadmap de Inaugurações · Grupo Ragga</div><div class="rmap-flow">`;
+dated.forEach((i,ix)=>{const p=i.iso.split('-');const d=new Date(+p[0],+p[1]-1,+p[2]);
+const df=Math.round((d-today)/86400000);
+const cd=df>0?`faltam ${df}d`:df===0?'é hoje! 🎉':`há ${-df}d`;
+const oc=i.id?`onclick="rmapOpen('${i.id}','${esc(i.nm)}',${i.cu})"`:'';
+h+=`${ix?'<span class="rmap-arrow">→</span>':''}<div class="rmap-step" ${oc} title="clique para editar"><span class="rmap-date">${p[2]}/${p[1]}</span><span class="rmap-nm">${i.nm}</span><span class="rmap-cd">${cd}</span></div>`;});
+if(und.length||true){h+=`${dated.length?'<span class="rmap-arrow">→</span>':''}<div class="rmap-next"><span class="rmap-next-l">na sequência</span><div class="rmap-chips">${und.map(i=>`<span class="rmap-chip" ${i.id?`onclick="rmapOpen('${i.id}','${esc(i.nm)}',${i.cu})"`:''} title="clique para agendar">${i.nm}</span>`).join('')}<span class="rmap-chip add" onclick="rmapAdd()">＋ adicionar</span></div></div>`;}
+h+=`</div>`;
+if(rmapEdit){const cur=getDate(rmapEdit.id)||'';
+h+=`<div class="rmap-edit"><span class="rmap-edit-nm">📅 ${rmapEdit.nm}</span>
+<input type="date" id="rmapDateIn" value="${cur}">
+<button class="rmap-btn" onclick="rmapSave()">✓ Salvar</button>
+${cur?`<button class="rmap-btn ghost" onclick="rmapClearDate()">↩ Remover data</button>`:''}
+${rmapEdit.cu?`<button class="rmap-btn ghost" onclick="rmapRename()">✏️ Nome</button><button class="rmap-btn danger" onclick="rmapDel()">🗑 Excluir</button>`:''}
+<button class="rmap-btn ghost" onclick="rmapClose()">✕</button></div>`;}
+el.innerHTML=h;}
 function ro(){const el=document.getElementById('orcView');
-let h='<div class="tc"><div class="ct">📅 Inaugurações</div><div class="tg">'+TL.map(t=>{
+const tlArr=TL.map(t=>({...t,iso:(t.pk&&getDate(t.pk))||''}));
+const dated=tlArr.filter(t=>t.iso).sort((a,b)=>a.iso<b.iso?-1:1);
+const undated=tlArr.filter(t=>!t.iso&&t.tp!=='oc');
+const hidden=tlArr.filter(t=>!t.iso&&t.tp==='oc');
+let h='<div class="tc"><div class="ct">📅 Inaugurações</div><div class="tg">'+dated.concat(undated,hidden).map(t=>{
 const c=t.tp==='b'?'hb':t.tp==='oc'?'oc':'nb';const tc=t.tp==='b'?'b':t.tp==='oc'?'oc':'p';
 const tl=t.tp==='b'?'Orçamento':t.tp==='oc'?'Oculto':'Pendente';
 const oc=t.k?`onclick="sf('${t.k}')"`:'';
-const dtv=(t.pk&&getDate(t.pk))?dFmt(getDate(t.pk)):t.dt;
-return `<div class="ti ${c}" ${oc}><div class="td">${dtv}</div><div class="tn">${t.nm}</div>${t.v?`<div class="tv">${F(t.v)}</div>`:''}<div class="tt ${tc}">${tl}</div></div>`;
+const badge=t.pk?dateBadge(t.pk):'';
+const dtv=t.iso?dFmt(t.iso).slice(0,5):'';
+return `<div class="ti ${c}${t.iso?' dated':''}" ${oc}><div class="ti-top">${t.iso?`<span class="ti-date">${dtv}</span>`:`<span class="ti-date nd">— a definir</span>`}${badge}</div><div class="tn">${t.nm}</div><div class="ti-bot">${t.v?`<span class="tv">${F(t.v)}</span>`:'<span class="tv nd">a orçar</span>'}<span class="tt ${tc}">${tl}</span></div></div>`;
 }).join('')+'</div></div>';
 const ps=Object.entries(D).sort((a,b)=>b[1].total-a[1].total);
 h+=`<div class="og"><div class="tc"><div class="ct">📊 Por Expansão</div><div class="cw"><canvas id="ch"></canvas></div></div>
@@ -932,8 +1063,14 @@ CK.items=CK.items||{};CK.custom=CK.custom||{};CK.deleted=CK.deleted||[];CK.custo
 })();
 
 let ckCatFilter={};
+let ckEditOpen={};
+function ck2Toggle(id){ckSyncFromDOM();ckEditOpen[id]=!ckEditOpen[id];renderCheck();}
+function ck2Open(id,field){ckSyncFromDOM();ckEditOpen[id]=true;renderCheck();
+setTimeout(()=>{const el=document.querySelector(`input[data-id='${id}'][data-field='${field}']`);if(el){el.focus();if(el.select)el.select();}},60);}
 
 let ckFilter='all';
+let ckStatusFilter='all';
+function setCkStatus(s){ckSyncFromDOM();ckStatusFilter=s;renderCheck();}
 
 function ckBuildProjects(){
 // clona a base, remove excluídos, aplica estado salvo e injeta itens/categorias custom
@@ -1003,10 +1140,23 @@ CK.items[id]=CK.items[id]||{};
 if(t===DEFT[id]){if(CK.items[id].t){delete CK.items[id].t;markDirty();}}
 else if(CK.items[id].t!==t){CK.items[id].t=t;markDirty();}}
 
+function saveObs(el){
+const id=el.dataset.id;const t=el.innerText.replace(/\u00a0/g,' ').trim();
+CK.items[id]=CK.items[id]||{};
+if(CK.items[id].obs!==t){CK.items[id].obs=t;markDirty();}
+if(!t)renderCheck();}
+
+function delObs(id){
+if(!confirm('Excluir esta observação?'))return;
+ckSyncFromDOM();
+if(CK.items[id])CK.items[id].obs='';
+renderCheck();markDirty();}
+
 function ckSyncFromDOM(){
+document.querySelectorAll('.ck2-note-t[contenteditable]').forEach(el=>{const id=el.dataset.id;const t=el.innerText.replace(/\u00a0/g,' ').trim();CK.items[id]=CK.items[id]||{};CK.items[id].obs=t;});
 document.querySelectorAll('.ck-title[contenteditable]').forEach(el=>saveTitle(el));
 document.querySelectorAll('.ck-cb').forEach(cb=>{const id=cb.dataset.id;if(!id)return;CK.items[id]=CK.items[id]||{};CK.items[id].done=cb.classList.contains('done');});
-document.querySelectorAll('.ck-fields input').forEach(inp=>{const id=inp.dataset.id;CK.items[id]=CK.items[id]||{};CK.items[id][inp.dataset.field]=inp.value;});}
+document.querySelectorAll('input[data-field][data-id]').forEach(inp=>{const id=inp.dataset.id;CK.items[id]=CK.items[id]||{};CK.items[id][inp.dataset.field]=inp.value;});}
 
 function renderCheck(filterProj){
 if(filterProj!==undefined)ckFilter=filterProj;
@@ -1023,12 +1173,18 @@ let h=`<div class="ck-save-bar"><div><strong style="font-size:14px">✅ Plano de
 h+=`<div class="ck-filters"><button class="ck-fbtn${ckFilter==='all'?' a':''}" onclick="renderCheck('all')">Todos</button>`;
 projects.forEach(p=>{h+=`<button class="ck-fbtn${ckFilter===p.id?' a':''}" onclick="renderCheck('${p.id}')" style="border-left:3px solid ${p.color}">${p.name}</button>`;});
 h+=`</div>`;
+h+=`<div class="ck-filters" style="margin-top:-8px"><span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--dim);align-self:center;margin-right:2px">Status:</span>
+<button class="ck-fbtn st${ckStatusFilter==='all'?' a':''}" onclick="setCkStatus('all')">Todos</button>
+<button class="ck-fbtn st pend${ckStatusFilter==='pend'?' a':''}" onclick="setCkStatus('pend')">⏳ Pendentes</button>
+<button class="ck-fbtn st done${ckStatusFilter==='done'?' a':''}" onclick="setCkStatus('done')">✅ Concluídos</button></div>`;
 
 h+=`<div class="ck-stats"><div class="ck-stat"><div class="ck-stat-v" style="color:#059669">${totalDone}</div><div class="ck-stat-l">Concluídos</div></div><div class="ck-stat"><div class="ck-stat-v" style="color:#D97706">${totalItems-totalDone}</div><div class="ck-stat-l">Pendentes</div></div><div class="ck-stat"><div class="ck-stat-v" style="color:var(--brand)">${pct}%</div><div class="ck-stat-l">Progresso</div></div></div>`;
 
 filtered.forEach(proj=>{
 let pDone=0,pTotal=0;
 proj.cats.forEach(c=>{pTotal+=c.items.length;pDone+=c.items.filter(x=>x.done).length;});
+if(ckStatusFilter==='done'&&pDone===0)return;
+if(ckStatusFilter==='pend'&&pDone===pTotal&&pTotal>0)return;
 const ppct=pTotal>0?Math.round(pDone/pTotal*100):0;
 const activeCat=ckCatFilter[proj.id]||'all';
 h+=`<div class="ck-card"><div class="ck-proj"><span class="ck-dot" style="background:${proj.color}"></span><span class="ck-name" style="color:${proj.color}">${proj.name}</span><span style="font-size:11px;color:var(--muted);margin-left:8px">${proj.type}</span><span class="ck-datewrap"><label>📅 Inauguração</label><input type="date" class="ck-date" value="${getDate(proj.id)}" onchange="setProjDate('${proj.id}',this.value)">${dateBadge(proj.id)}</span><span class="ck-count">${pDone}/${pTotal}</span></div><div class="ck-progress"><div class="ck-progress-bar" style="width:${ppct}%;background:${proj.color}"></div></div>`;
@@ -1051,18 +1207,39 @@ h+=`<div style="font-size:10px;color:var(--muted);margin-top:8px">Fonte: fichas_
 }
 
 proj.cats.filter(cat=>activeCat==='all'||cat.cat===activeCat).forEach(cat=>{
+const visItems=cat.items.filter(x=>ckStatusFilter==='all'||(ckStatusFilter==='done'?x.done:!x.done));
+if(ckStatusFilter!=='all'&&visItems.length===0)return;
 const cDone=cat.items.filter(x=>x.done).length;
 h+=`<div style="margin:14px 0 6px;font-size:13px;font-weight:700;color:var(--brand);display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${cat.cat}</span><span style="display:flex;gap:8px;align-items:center;flex-shrink:0"><span style="font-size:10px;color:var(--muted)">${cDone}/${cat.items.length}</span><button class="ck-add-btn" onclick="addCkItem('${proj.id}',this)" data-cat="${cat.cat.replace(/"/g,'&quot;')}" title="Adicionar item">+ item</button>${cat.cu?`<button class="ck-delcat" onclick="delCkCat('${proj.id}',this.dataset.c)" data-c="${cat.cat.replace(/"/g,'&quot;')}" title="Excluir esta categoria">🗑 excluir</button>`:''}</span></div>`;
-cat.items.forEach(item=>{
+visItems.forEach((item,vi)=>{const ri=cat.items.indexOf(item);
 const done=item.done||false;
-h+=`<div class="ck-item"><div class="ck-cb${done?' done':''}" data-id="${item.id}" onclick="toggleCk(this)"></div><div class="ck-text" style="flex:1"><div class="ck-title${done?' done':''}" contenteditable="true" spellcheck="false" data-id="${item.id}" onblur="saveTitle(this)" onkeydown="if(event.key==='Escape')this.blur()" title="Clique para editar o texto — Enter quebra linha">${escH(item.t)}</div>${item.custom?'<span class="ck-tag-cu">novo</span>':''}<div class="ck-fields"><div class="ck-field"><label>Prazo</label><input type="date" data-id="${item.id}" data-field="prazo" value="${item.prazo||''}" onchange="markDirty()"></div><div class="ck-field"><label>Responsável</label><input type="text" data-id="${item.id}" data-field="resp" value="${(item.resp||'').replace(/"/g,'&quot;')}" placeholder="Nome..." onchange="markDirty()"></div><div class="ck-field"><label>Obs</label><input type="text" data-id="${item.id}" data-field="obs" value="${(item.obs||'').replace(/"/g,'&quot;')}" placeholder="Observação..." onchange="markDirty()"></div></div>${(()=>{
+const isOpen=!!ckEditOpen[item.id];
 const lks=((CK.items[item.id]||{}).links)||[];
 const fls=((CK.items[item.id]||{}).files)||[];
-let a='<div class="ck-att">';
-lks.forEach((l,ix)=>{a+=`<span class="ck-chip lk"><a href="${escH(l.u)}" target="_blank" rel="noopener" title="${escH(l.u)}">🔗 ${escH(l.t)}</a><button class="ck-chip-x" onclick="delCkAtt('${item.id}','links',${ix})" title="Remover link">×</button></span>`;});
-fls.forEach((f,ix)=>{a+=`<span class="ck-chip fl"><button class="ck-chip-open" onclick="openCkFile('${item.id}',${ix})" title="Baixar ${escH(f.n)}">📎 ${escH(f.n)} <em>${(f.s/1024).toFixed(0)} KB</em></button><button class="ck-chip-x" onclick="delCkAtt('${item.id}','files',${ix})" title="Remover arquivo">×</button></span>`;});
-a+=`<button class="ck-att-btn" onclick="addCkLink('${item.id}')">🔗 + link</button><button class="ck-att-btn" onclick="addCkFile('${item.id}')">📎 + arquivo</button></div>`;
-return a;})()}</div><button class="ck-del" onclick="delCkItem('${item.id}')" title="Excluir item">×</button></div>`;
+const nAtt=lks.length+fls.length;
+// badge de prazo
+let dtB='📅',dtCls='';
+if(item.prazo){const pp=item.prazo.split('-');dtB='📅 '+pp[2]+'/'+pp[1];
+const tdy=new Date();tdy.setHours(0,0,0,0);
+if(!done&&new Date(item.prazo+'T00:00:00')<tdy)dtCls=' late';else dtCls=' has';}
+// badge de responsável
+const rB=item.resp?('👤 '+escH(item.resp.split(' ')[0])):'👤';
+h+=`<div class="ck2-row${done?' done':''}">
+<span class="ck2-num" style="background:${done?'#059669':proj.color}">${done?'✓':ri+1}</span>
+<div class="ck-cb${done?' done':''}" data-id="${item.id}" onclick="toggleCk(this)"></div>
+<div class="ck2-main">
+<div class="ck-title ck2-title${done?' done':''}" contenteditable="true" spellcheck="false" data-id="${item.id}" onblur="saveTitle(this)" onkeydown="if(event.key==='Escape')this.blur()" title="Clique para editar — Enter quebra linha">${escH(item.t)}</div>
+${(item.obs&&!isOpen)?`<div class="ck2-note">💬 <span class="ck2-note-t" contenteditable="true" spellcheck="false" data-id="${item.id}" onblur="saveObs(this)" onkeydown="if(event.key==='Escape')this.blur()" title="Clique para editar a observação">${escH(item.obs)}</span><button class="ck-chip-x" onclick="delObs('${item.id}')" title="Excluir observação">×</button></div>`:''}
+${nAtt?`<div class="ck2-attline">${lks.map((l,ix)=>`<span class="ck-chip lk"><a href="${escH(l.u)}" target="_blank" rel="noopener" title="${escH(l.u)}">🔗 ${escH(l.t)}</a><button class="ck-chip-x" onclick="delCkAtt('${item.id}','links',${ix})">×</button></span>`).join('')}${fls.map((f,ix)=>`<span class="ck-chip fl"><button class="ck-chip-open" onclick="openCkFile('${item.id}',${ix})" title="Baixar ${escH(f.n)}">📎 ${escH(f.n)} <em>${(f.s/1024).toFixed(0)}KB</em></button><button class="ck-chip-x" onclick="delCkAtt('${item.id}','files',${ix})">×</button></span>`).join('')}</div>`:''}
+${isOpen?`<div class="ck2-edit"><div class="ck-field"><label>Prazo</label><input type="date" data-id="${item.id}" data-field="prazo" value="${item.prazo||''}" onchange="markDirty()"></div><div class="ck-field"><label>Responsável</label><input type="text" data-id="${item.id}" data-field="resp" value="${(item.resp||'').replace(/"/g,'&quot;')}" placeholder="Nome..." onchange="markDirty()"></div><div class="ck-field"><label>Obs</label><input type="text" data-id="${item.id}" data-field="obs" value="${(item.obs||'').replace(/"/g,'&quot;')}" placeholder="Observação..." onchange="markDirty()"></div><div class="ck2-edit-att"><button class="ck-att-btn" onclick="addCkLink('${item.id}')">🔗 + link</button><button class="ck-att-btn" onclick="addCkFile('${item.id}')">📎 + arquivo</button></div></div>`:''}
+</div>
+<div class="ck2-acts">
+<button class="ck2-badge dt${dtCls}" onclick="ck2Open('${item.id}','prazo')" title="${item.prazo?'Prazo: '+item.prazo:'Definir prazo'}">${dtB}</button>
+<button class="ck2-badge rp${item.resp?' has':''}" onclick="ck2Open('${item.id}','resp')" title="${item.resp?'Responsável: '+escH(item.resp):'Definir responsável'}">${rB}</button>
+<button class="ck2-badge ed${isOpen?' on':''}" onclick="ck2Toggle('${item.id}')" title="${isOpen?'Fechar edição':'Editar prazo / responsável / obs / anexos'}">✏️</button>
+${nAtt?`<span class="ck2-badge n" title="${nAtt} anexo(s)">📎${nAtt}</span>`:''}
+<button class="ck2-x" onclick="delCkItem('${item.id}')" title="Excluir item">×</button>
+</div></div>`;
 });});
 h+=`<div style="margin-top:12px"><button class="ck-add-cat" onclick="addCkCat('${proj.id}')">+ Nova categoria em ${proj.name}</button></div>`;
 h+=`</div>`;});
@@ -1074,7 +1251,8 @@ function setCkCatFilter(projId,cat){ckSyncFromDOM();ckCatFilter[projId]=(cat==='
 
 function toggleCk(el){
 el.classList.toggle('done');
-el.nextElementSibling.querySelector('.ck-title').classList.toggle('done');
+ckSyncFromDOM();
+renderCheck();
 markDirty();}
 
 function addCkItem(projId,btn){
@@ -1171,5 +1349,5 @@ document.getElementById('orcView').style.display='';
 document.getElementById('cfView').style.display='none';
 if(f==='all'){hv.textContent=F(G);hv.style.color='var(--brand)';hl.textContent='investimento total — 10 projetos';hs.textContent='Expansões 2026';ro();}
 else{const p=D[f];hv.textContent=F(p.total);hv.style.color=p.color;hl.textContent=p.name;hs.textContent=p.type+' · '+(dFmt(getDate(pidOf(f)))||p.date);rb(f);window.scrollTo({top:0,behavior:'smooth'});}}
-ro();
+renderRoadmap();ro();
 </script></body></html>
